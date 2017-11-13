@@ -79,7 +79,7 @@ export default class App extends Component<{}> {
               source={require('../images/profile.png')}
               resizeMode="stretch" />
             }
-          renderSelectedIcon={() => <Image style={{width:20,height:20}}
+            renderSelectedIcon={() => <Image style={{width:20,height:20}}
             source={require('../images/profile_red.png')}
             resizeMode="stretch"
             />}
