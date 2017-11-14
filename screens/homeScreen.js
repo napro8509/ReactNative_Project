@@ -7,14 +7,16 @@ import {
 import { StackNavigator } from 'react-navigation';
 
 export default class HomeScreen extends Component{
-  static navigationOptions={
+  /*static navigationOptions={
     title:'Home Screen'
-  };
+  };*/
   render(){
     const {navigate}=this.props.navigation;
     return(
       <View style={{flex:1,backgroundColor:'grey'}}>
-        <TouchableOpacity onPress={()=>navigate('Search',{user:'Na'})}>
+        <TouchableOpacity onPress={()=>
+          navigate('Search',{user:'Na'})
+        }>
         <Text>
         This is HomeScreen
         </Text>
