@@ -15,12 +15,20 @@ export default class Header extends Component{
   }
   render(){
     return(
-      <View style={{height: height/8 ,backgroundColor:'pink'}}>
+      <View style={{height: height/9 ,backgroundColor:'green',flexDirection:'row',justifyContent:'space-between',alignItems:'center'}}>
         <TouchableOpacity onPress={this.openDrawer.bind(this)}>
           <Image
-
+             source={require('../images/menu.png')}
           />
         </TouchableOpacity>
+        <Text style={{color:'white',fontSize:30}}>
+          Mobile World
+        </Text>
+        <TouchableOpacity>
+          <Image
+             source={require('../images/phone.png')}
+          />
+          </TouchableOpacity>
       </View>
     );
   }

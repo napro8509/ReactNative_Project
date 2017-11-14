@@ -2,7 +2,9 @@ import React, {Component} from 'react';
 import {
   View,
   Text,
-  TouchableOpacity
+  TouchableOpacity,
+  StyleSheet,
+  Image
 } from 'react-native';
 import { StackNavigator,TabNavigator } from 'react-navigation';
 import HomeScreen from '../screens/homeScreen';
@@ -21,13 +23,26 @@ export var Tabs= TabNavigator({
   Home:{
     screen: ListScreen,
     navigationOptions:{
-      tabBarLabel:'Home'
+      tabBarLabel:'Home',
+      tabBarIcon: ({ tintColor }) => (
+      <Image
+        source={require('../images/home.png')}
+        style={[styles.icon, {tintColor: tintColor}]}
+      />
+    ),
+
     }
   },
   Detail:{
     screen: DetailScreen,
     navigationOptions:{
-      tabBarLabel:'Detail'
+      tabBarLabel:'Detail',
+      tabBarIcon: ({ tintColor }) => (
+      <Image
+        source={require('../images/profile.png')}
+        style={[styles.icon, {tintColor: tintColor}]}
+      />
+    ),
     }
   },
 },
@@ -36,6 +51,12 @@ export var Tabs= TabNavigator({
   animationEnabled: true,
   tabBarOptions: {
     activeTintColor: '#e91e63',
+    showIcon: true,
+    labelStyle: {
+    fontSize: 10,
+    padding:0,
+    margin:0
+  },
   },
 });
 
@@ -54,3 +75,12 @@ export default class MainView extends Component<{}> {
     );
   }
 }
+
+const styles = StyleSheet.create({
+  icon: {
+    width: 22,
+    height: 22,
+    paddingTop:0,
+    marginTop:0
+  },
+});
