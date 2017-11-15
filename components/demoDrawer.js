@@ -1,15 +1,18 @@
 import React, {Component} from 'react';
 import {
   View,
-  Text
+  Text,
+  Image
 } from 'react-native';
-import { StackNavigator,TabNavigator } from 'react-navigation';
+import { StackNavigator } from 'react-navigation';
 import MainView from '../screens/mainView';
 import TabView from '../screens/tabView'
 import Drawer from 'react-native-drawer';
 import HomeScreen from '../screens/homeScreen';
 import SearchScreen from '../screens/searchScreen';
 import MenuView from '../screens/menuView';
+import TabNavigator from 'react-native-tab-navigator';
+
 //import cuasochinh from './mainView';
 export const ListScreen=StackNavigator({
   Shop:{screen: HomeScreen},
@@ -37,6 +40,12 @@ export default class App extends Component {
  openControlPanel = () => {
    this.drawer.open()
  };
+ constructor(prop){
+   super(prop);
+   this.state={
+     selectedTab:'home'
+   }
+ }
 
   render(){
     return (
@@ -48,6 +57,7 @@ export default class App extends Component {
       >
       <MainView open={this.openControlPanel.bind(this)} />
     </Drawer>
+
     );
   }
 }

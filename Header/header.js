@@ -4,7 +4,9 @@ import {
   Text,
   TouchableOpacity,
   Dimensions,
-  Image
+  Image,
+  StyleSheet,
+  TextInput
 } from 'react-native';
 
 const {height} = Dimensions.get('window');
@@ -15,21 +17,58 @@ export default class Header extends Component{
   }
   render(){
     return(
-      <View style={{height: height/9 ,backgroundColor:'green',flexDirection:'row',justifyContent:'space-between',alignItems:'center'}}>
+      <View style={styles.container}>
+      <View style={{flex:1,flexDirection:'row',justifyContent:'space-between',alignItems:'center'}}>
         <TouchableOpacity onPress={this.openDrawer.bind(this)}>
-          <Image
+          <Image style={styles.image}
              source={require('../images/menu.png')}
           />
         </TouchableOpacity>
-        <Text style={{color:'white',fontSize:30}}>
-          Mobile World
-        </Text>
+        <Image style={{height:height/16,width:height/7}}
+            source={require('../images/shopLogo.png')}
+              >
+        </Image>
         <TouchableOpacity>
-          <Image
+          <Image style={styles.image}
              source={require('../images/phone.png')}
           />
           </TouchableOpacity>
       </View>
+      <View style={{flex:1}}>
+        <TextInput style={styles.title}
+                    underlineColorAndroid='transparent'
+                    placeholder='Searching for something?'
+        >
+        </TextInput>
+      </View>
+      </View>
     );
   }
 }
+const styles=StyleSheet.create({
+  container:{
+    height: height/8 ,
+    backgroundColor:'#183544',
+    paddingLeft:15,
+    paddingRight:15,
+    //paddingTop:10,
+    justifyContent:'center'
+  },
+  image:{
+    height:height/17,
+    width:height/17,
+    marginLeft:5,
+    marginRight:5
+  },
+  title:{
+    backgroundColor:'white',
+    marginLeft:5,
+    marginRight:5,
+    marginTop:5,
+    marginBottom:10,
+    paddingVertical:0,
+    borderRadius:10,
+    paddingLeft:10
+  }
+  }
+)
