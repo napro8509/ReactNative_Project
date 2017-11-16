@@ -99,7 +99,6 @@ export default class MainView extends Component<{}> {
           source={require('../images/home_red.png')}
           resizeMode="stretch"
           />}
-        badgeText="1"
         onPress={() => this.setState({ selectedTab: 'home' })}>
         {<ListScreen/>}
       </TabNavigator.Item>
@@ -117,6 +116,39 @@ export default class MainView extends Component<{}> {
           resizeMode="stretch"
           />}
         onPress={() => this.setState({ selectedTab: 'profile' })}>
+        {<DetailScreen/>}
+      </TabNavigator.Item>
+      <TabNavigator.Item
+        selected={this.state.selectedTab === 'cart'}
+        title="Cart"
+        titleStyle={{color:'black'}}
+        renderIcon={() =>
+          <Image style={{width:20,height:20}}
+            source={require('../images/cart.png')}
+            resizeMode="stretch" />
+          }
+          renderSelectedIcon={() => <Image style={{width:20,height:20}}
+          source={require('../images/cart_red.png')}
+          resizeMode="stretch"
+          />}
+          badgeText="3"
+        onPress={() => this.setState({ selectedTab: 'cart' })}>
+        {<DetailScreen/>}
+      </TabNavigator.Item>
+      <TabNavigator.Item
+        selected={this.state.selectedTab === 'search'}
+        title="Search"
+        titleStyle={{color:'black'}}
+        renderIcon={() =>
+          <Image style={{width:20,height:20}}
+            source={require('../images/search.png')}
+            resizeMode="stretch" />
+          }
+          renderSelectedIcon={() => <Image style={{width:20,height:20}}
+          source={require('../images/search_red.png')}
+          resizeMode="stretch"
+          />}
+        onPress={() => this.setState({ selectedTab: 'search' })}>
         {<DetailScreen/>}
       </TabNavigator.Item>
     </TabNavigator>

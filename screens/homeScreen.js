@@ -2,10 +2,13 @@ import React, {Component} from 'react';
 import {
   View,
   Text,
-  TouchableOpacity
+  TouchableOpacity,
+  ScrollView
 } from 'react-native';
 import { StackNavigator } from 'react-navigation';
-
+import SaleCollection from './HomeScreen/saleCollection.js';
+import GiftVoucher from './HomeScreen/giftVoucher.js';
+import Category from './HomeScreen/category.js';
 export default class HomeScreen extends Component{
   /*static navigationOptions={
     title:'Home Screen'
@@ -13,7 +16,14 @@ export default class HomeScreen extends Component{
   render(){
     const {navigate}=this.props.navigation;
     return(
-      <View style={{flex:1,backgroundColor:'grey'}}>
+      <View style={{flex:1,backgroundColor:'#DBDBD8'}}>
+      <ScrollView contentContainerStyle={{}}>
+        <TouchableOpacity>
+        <SaleCollection/>
+        </TouchableOpacity>
+        <TouchableOpacity>
+        <GiftVoucher/>
+        </TouchableOpacity>
         <TouchableOpacity onPress={()=>
           navigate('Search',{user:'Na'})
         }>
@@ -21,6 +31,8 @@ export default class HomeScreen extends Component{
         This is HomeScreen
         </Text>
         </TouchableOpacity>
+        <Category/>
+      </ScrollView>
       </View>
     );
   }
