@@ -52,7 +52,9 @@ const styles=StyleSheet.create({
     paddingLeft:15,
     paddingRight:15,
     //paddingTop:10,
-    justifyContent:'center'
+    justifyContent:'center',
+    borderBottomWidth:1,
+    borderColor:'white'
   },
   image:{
     height:height/17,

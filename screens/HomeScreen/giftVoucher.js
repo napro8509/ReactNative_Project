@@ -37,11 +37,12 @@ const styles= StyleSheet.create({
     margin:10,
     shadowColor:'#2E272B',
     shadowOffset:{width:0,height:3},
-    shadowOpacity:0.2
+    shadowOpacity:0.2,
+    elevation:3
   },
   text:{
     fontSize:15,
-    color:'green',
+    color:'#183544',
     margin:5
   }
 })

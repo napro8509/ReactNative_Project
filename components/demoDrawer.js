@@ -5,33 +5,18 @@ import {
   Image
 } from 'react-native';
 import { StackNavigator } from 'react-navigation';
-import MainView from '../screens/mainView';
-import TabView from '../screens/tabView'
+import MainView from '../screens/HomeScreen/mainView';
 import Drawer from 'react-native-drawer';
-import HomeScreen from '../screens/homeScreen';
-import SearchScreen from '../screens/searchScreen';
-import MenuView from '../screens/menuView';
-import TabNavigator from 'react-native-tab-navigator';
+import HomeScreen from '../screens/HomeScreen/homeScreen';
+import SearchScreen from '../screens/HomeScreen/searchScreen';
+import MenuView from '../screens/MenuScreen/menuView';
+import MainMenu from '../screens/MenuScreen/mainMenu';
 
 //import cuasochinh from './mainView';
 export const ListScreen=StackNavigator({
   Shop:{screen: HomeScreen},
   Search:{screen: SearchScreen}
 });
-export const Tabs= TabNavigator({
-  Home:{
-    screen: ListScreen,
-    navigationOptions:{
-      tabBarLabel:'Home'
-    }
-  },
-  Search:{
-    screen: ListScreen,
-    navigationOptions:{
-      tabBarLabel:'Search'
-    }
-  }
-})
 
 export default class App extends Component {
   closeControlPanel = () => {
@@ -53,11 +38,10 @@ export default class App extends Component {
       openDrawerOffset={0.4}
       tapToClose={true}
       ref={(ref) => this.drawer = ref}
-      content={<MenuView/>}
+      content={<MainMenu/>}
       >
       <MainView open={this.openControlPanel.bind(this)} />
     </Drawer>
-
     );
   }
 }

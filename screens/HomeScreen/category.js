@@ -5,6 +5,7 @@ import {
   StyleSheet,
   Image,
   Dimensions,
+  TouchableOpacity
 } from 'react-native';
 import Swiper from 'react-native-swiper';
 
@@ -21,7 +22,8 @@ export default class Category extends Component<{}>{
           SALE COLLECTION
         </Text>
         </View>
-        <Swiper style={{flex:5,justifyContent:'center',alignItems:'center'}}>
+        <View style={{flex:5}}>
+        <Swiper style={{flex:1,justifyContent:'center',alignItems:'center'}}>
           <View style={{flex:1,backgroundColor:'red'}}>
           </View>
           <View style={{flex:1,backgroundColor:'green'}}>
@@ -29,6 +31,7 @@ export default class Category extends Component<{}>{
           <View style={{flex:1,backgroundColor:'blue'}}>
           </View>
         </Swiper>
+        </View>
       </View>
     );
   }
@@ -40,11 +43,12 @@ const styles= StyleSheet.create({
     margin:10,
     shadowColor:'#2E272B',
     shadowOffset:{width:0,height:3},
-    shadowOpacity:0.2
+    shadowOpacity:0.2,
+    elevation:3
   },
   text:{
     fontSize:15,
-    color:'green',
+    color:'#183544',
     margin:5
   },
 
