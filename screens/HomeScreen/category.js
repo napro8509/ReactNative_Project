@@ -14,6 +14,10 @@ const imageHeight = height*0.37*5/6;
 const imageWidth = imageHeight*1.84;
 
 export default class Category extends Component<{}>{
+  openList(){
+    const { goToList }= this.props;
+    goToList();
+  }
   render() {
     return (
       <View style={styles.collecions}>
@@ -25,6 +29,11 @@ export default class Category extends Component<{}>{
         <View style={{flex:5}}>
         <Swiper style={{flex:1,justifyContent:'center',alignItems:'center'}}>
           <View style={{flex:1,backgroundColor:'red'}}>
+            <TouchableOpacity onPress={this.openList.bind(this)}>
+            <Text>
+              Xin chao
+            </Text>
+            </TouchableOpacity>
           </View>
           <View style={{flex:1,backgroundColor:'green'}}>
           </View>

@@ -14,6 +14,7 @@ export default class HomeScreen extends Component{
   /*static navigationOptions={
     title:'Home Screen'
   };*/
+
   render(){
     const {navigate}=this.props.navigation;
     return(
@@ -25,8 +26,8 @@ export default class HomeScreen extends Component{
         <TouchableOpacity>
           <GiftVoucher/>
         </TouchableOpacity>
-        <TopProduct/>
-        <Category/>
+        <TopProduct goToDetail={()=>{navigate('ProductDetail');}}/>
+        <Category goToList={()=>{navigate('ListProduct');}}/>
       </View>
       </ScrollView>
     );

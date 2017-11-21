@@ -13,9 +13,13 @@ import SearchScreen from './searchScreen';
 import DetailScreen from './detailScreen';
 import Header from '../../Header/header';
 import TabNavigator from 'react-native-tab-navigator';
+import ListProduct from './ProductInformation/listProduct';
+import ProductDetail from './ProductInformation/productDetail';
 export const ListScreen=StackNavigator({
   Shop:{screen: HomeScreen},
-  Search:{screen: SearchScreen}
+  Search:{screen: SearchScreen},
+  ListProduct:{screen: ListProduct},
+  ProductDetail:{screen: ProductDetail},
 },
   {
     headerMode:'none'
