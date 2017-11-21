@@ -7,15 +7,16 @@ import {
 import { StackNavigator } from 'react-navigation';
 import MenuView from './menuView';
 import LogIn from './logIn';
+import Authentication from './Authentication/authentication';
+
 const MainMenuScreen=StackNavigator({
   Information:{screen: MenuView},
-  Login:{screen: LogIn}
+  Login:{screen: LogIn},
+  Authentication:{screen: Authentication}
 },
   {
-  headerMode:'none'
-  }
-);
-
+    headerMode:'none',
+  });
 export default class MainMenu extends Component<{}>{
   render() {
     return (

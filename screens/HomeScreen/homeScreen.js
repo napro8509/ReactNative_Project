@@ -19,7 +19,14 @@ export default class HomeScreen extends Component{
     return(
       <ScrollView>
       <View style={{flex:1,backgroundColor:'grey'}}>
+        <TouchableOpacity>
+          <SaleCollection/>
+        </TouchableOpacity>
+        <TouchableOpacity>
+          <GiftVoucher/>
+        </TouchableOpacity>
         <TopProduct/>
+        <Category/>
       </View>
       </ScrollView>
     );

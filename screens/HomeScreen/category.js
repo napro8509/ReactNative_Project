@@ -19,7 +19,7 @@ export default class Category extends Component<{}>{
       <View style={styles.collecions}>
         <View style={{flex:1,justifyContent:'center'}}>
         <Text style={styles.text}>
-          SALE COLLECTION
+          Swiper Image
         </Text>
         </View>
         <View style={{flex:5}}>

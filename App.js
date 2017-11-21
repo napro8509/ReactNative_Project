@@ -4,17 +4,13 @@ import {
   Text,
   TouchableOpacity
 } from 'react-native';
-
+import MenuView from './screens/MenuScreen/menuView';
 
 
 export default class App extends Component {
   render() {
     return (
-      <View >
-      <Text>
-      Xin chao cac ban
-      </Text>
-      </View>
+      <MenuView/>
     );
   }
 }

@@ -6,40 +6,67 @@ import {
   StyleSheet,
   Image
 } from 'react-native';
-
+import { StackNavigator } from 'react-navigation';
 
 export default class MenuView extends Component{
+  constructor(props){
+    super(props);
+    this.state = {
+      isLogIn:true,
+    };
+  };
   render() {
-    const { navigate } = this.props.navigation;
+    const {navigate} =this.props.navigation;
+    const LogInJSX=(
+      <View style= { styles.allbutton}>
+      <TouchableOpacity>
+        <View style={styles.button}>
+        <Text style={styles.text}>
+          Sign In
+        </Text>
+        </View>
+      </TouchableOpacity>
+      </View>
+    );
+
+    const LogOutJSX=(
+      <View style={{flex:1, justifyContent:'space-between',alignItems:'center'}}>
+      <Text style={styles.name}>Le Gio Na</Text>
+      <View style={styles.allbutton}>
+      <TouchableOpacity>
+        <View style={styles.button}>
+        <Text style={styles.text}>
+          Oder History
+        </Text>
+        </View>
+      </TouchableOpacity>
+      <TouchableOpacity>
+        <View style={styles.button}>
+        <Text style={styles.text}>
+          Change Information
+        </Text>
+        </View>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={()=>{
+        navigate('Login');
+      }}>
+        <View style={styles.button}>
+        <Text style={styles.text}>
+          Sign Out
+        </Text>
+        </View>
+      </TouchableOpacity>
+      </View>
+      </View>
+    );
+
+    const MainJSX= this.state.isLogIn ? LogOutJSX : LogInJSX;
     return (
       <View style={styles.panel}>
         <Image style={styles.hinh}
           source={require('../../images/profile_white.png')}
           resizeMode="stretch" />
-        <View style={styles.allbutton}>
-        <TouchableOpacity onPress={()=>
-          navigate('Login',{user:'Na'})}>
-          <View style={styles.button}>
-          <Text style={styles.text}>
-            Login
-          </Text>
-          </View>
-        </TouchableOpacity>
-        <TouchableOpacity>
-          <View style={styles.button}>
-          <Text style={styles.text}>
-            Login
-          </Text>
-          </View>
-        </TouchableOpacity>
-        <TouchableOpacity>
-          <View style={styles.button}>
-          <Text style={styles.text}>
-            Login
-          </Text>
-          </View>
-        </TouchableOpacity>
-        </View>
+        {MainJSX}
       </View>
     );
   }
@@ -77,5 +104,10 @@ const styles=StyleSheet.create({
     height:100,
     marginTop:30,
     borderRadius:500
+  },
+  name:{
+    color:'#FFF',
+    fontWeight:'500',
+    fontFamily:'Avenir'
   }
 })
