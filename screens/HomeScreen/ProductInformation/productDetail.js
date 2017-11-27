@@ -20,6 +20,16 @@ export default class ProductDetail extends Component{
         Go back to mainView
         </Text>
         </TouchableOpacity>
+        <TouchableOpacity onPress={()=>{
+          navigation.goBack('id-1511750056576-1');
+        }}>
+        <Text>
+        Go back to Main
+        </Text>
+        </TouchableOpacity>
+        <Text>
+          {navigation.state.key}
+        </Text>
       </View>
     );
   }

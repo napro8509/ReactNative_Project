@@ -1,4 +1,7 @@
 {
   "name": "MyProjects",
-  "displayName": "MyProjects"
+  "displayName": "MyProjects",
+  "expo": {
+  "sdkVersion": "18.0.0"
+ }
 }

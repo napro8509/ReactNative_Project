@@ -33,7 +33,7 @@ export default class SaleCollection extends Component<{}>{
 const styles= StyleSheet.create({
   collecions:{
     backgroundColor:'#FFF',
-    height:height*0.38,
+    height:height*0.35,
     margin:10,
     shadowColor:'#2E272B',
     shadowOffset:{width:0,height:3},
