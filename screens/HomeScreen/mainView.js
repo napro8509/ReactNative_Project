@@ -35,7 +35,7 @@ export default class MainView extends Component {
     super(props);
     this.state = {
       selectedTab: 'home',
-      type:[1,2,3,4],
+      type:[]
     }
   }
   componentDidMount() {
@@ -45,7 +45,7 @@ export default class MainView extends Component {
       this.setState(
          {type:responseJson.type}
       );
-      console.log(responseJson.type);
+      console.log('+++++++++++');
       console.log(this.state.type);
     })
     .catch((error) => { console.log(error)});
@@ -70,7 +70,7 @@ export default class MainView extends Component {
               resizeMode="stretch"
             />}
             onPress={() => this.setState({ selectedTab: 'home' })}>
-            {<ListScreen />}
+            {<ListScreen screenProps={this.state.type}/>}
           </TabNavigator.Item>
           <TabNavigator.Item
             selected={this.state.selectedTab === 'profile'}

@@ -5,7 +5,7 @@ import {
   StyleSheet,
   Image,
   Dimensions,
-  TouchableOpacity
+  TouchableOpacity,
 } from 'react-native';
 import Swiper from 'react-native-swiper';
 
@@ -13,12 +13,31 @@ const {height}=Dimensions.get('window');
 const imageHeight = height*0.37*5/6;
 const imageWidth = imageHeight*1.84;
 
-export default class Category extends Component<{}>{
-  openList(){
-    const { goToList }= this.props;
-    goToList();
+const url='https://funnyshopjonah.000webhostapp.com/images/type/';
+export default class Category extends Component {
+  openList(a){
+    
   }
   render() {
+    const { navigation,screenProps}= this.props;
+    const getList=screenProps.map((data) => {
+      return (
+        <View key={data.id}
+              style={{flex:1}}
+              >
+          <TouchableOpacity onPress={()=>{
+              const { goToList }= this.props;
+              goToList(data.id);
+          }}>
+            <Text>{data.name}</Text>
+            <Image source={{ uri: `${url}${data.image}` }}
+              style={{ width: 100, height: 50 }}
+            />
+          </TouchableOpacity>
+        </View>
+
+      )
+    })
     return (
       <View style={styles.collecions}>
         <View style={{flex:1,justifyContent:'center'}}>
@@ -27,18 +46,11 @@ export default class Category extends Component<{}>{
         </Text>
         </View>
         <View style={{flex:5}}>
-        <Swiper style={{flex:1,justifyContent:'center',alignItems:'center'}}>
-          <View style={{flex:1,backgroundColor:'red'}}>
-            <TouchableOpacity onPress={this.openList.bind(this)}>
-            <Text>
-              Xin chao
-            </Text>
-            </TouchableOpacity>
-          </View>
-          <View style={{flex:1,backgroundColor:'green'}}>
-          </View>
-          <View style={{flex:1,backgroundColor:'blue'}}>
-          </View>
+        <Swiper style={{flex:1,justifyContent:'center',alignItems:'center'}}
+                loop={false}
+                showsPagination={true}
+        >         
+          {getList}
         </Swiper>
         </View>
       </View>

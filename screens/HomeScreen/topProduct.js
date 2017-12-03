@@ -10,10 +10,6 @@ import {
 
 const {height,width} = Dimensions.get('window');
 export default class TopProduct extends Component{
-  openDetail(){
-    const {goToDetail}=this.props;
-    goToDetail();
-  }
   render() {
     return (
       <View style={styles.container}>
@@ -24,7 +20,10 @@ export default class TopProduct extends Component{
         </View>
         <View style={styles.body}>
           <View style={styles.productContainer}>
-          <TouchableOpacity onPress={this.openDetail.bind(this)}>
+          <TouchableOpacity onPress={()=>{
+            const {goToDetail}=this.props;
+            goToDetail(55);
+          }}>
           <Image style={styles.image}
             resizeMode="stretch"
           source={{uri:'https://i5.walmartimages.com/asr/20caa881-9f84-478b-8259-b9c3448e1007_1.f85576fe20ee4efe41421c04faaa310f.jpeg?odnHeight=450&odnWidth=450&odnBg=FFFFFF'}}/>

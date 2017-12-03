@@ -16,7 +16,9 @@ export default class HomeScreen extends Component{
   };*/
 
   render(){
-    const {navigate}=this.props.navigation;
+    const {navigation,screenProps}=this.props;
+    console.log("1111111");
+    console.log(screenProps);
     return(
       <ScrollView>
       <View style={{flex:1,backgroundColor:'grey'}}>
@@ -26,8 +28,10 @@ export default class HomeScreen extends Component{
         <TouchableOpacity>
           <GiftVoucher/>
         </TouchableOpacity>
-        <TopProduct goToDetail={()=>{navigate('ProductDetail');}}/>
-        <Category goToList={()=>{navigate('ListProduct');}}/>
+        <TopProduct goToDetail={(idPhone)=>{navigation.navigate('ProductDetail',{id:idPhone});}}/>
+        <Category goToList={(idList)=>{navigation.navigate('ListProduct',{id:idList});}}
+                  screenProps={screenProps}
+        />
       </View>
       </ScrollView>
     );
