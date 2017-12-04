@@ -15,6 +15,8 @@ import Header from '../../Header/header';
 import TabNavigator from 'react-native-tab-navigator';
 import ListProduct from './ProductInformation/listProduct';
 import ProductDetail from './ProductInformation/productDetail';
+import CartView from './Cart/Cart';
+import global from '../../Global/global';
 export const ListScreen = StackNavigator({
   Shop: { screen: HomeScreen },
   Search: { screen: SearchScreen },
@@ -35,8 +37,14 @@ export default class MainView extends Component {
     super(props);
     this.state = {
       selectedTab: 'home',
-      type:[]
+      type:[],
+      topProduct:[],
+      cartArray:[]
     }
+    global.addPhoneToCart=this.addPhoneToCart.bind(this);
+  }
+  addPhoneToCart(phone){
+    this.setState({cartArray:this.state.cartArray.concat(phone)});
   }
   componentDidMount() {
     fetch("https://funnyshopjonah.000webhostapp.com")
@@ -45,12 +53,13 @@ export default class MainView extends Component {
       this.setState(
          {type:responseJson.type}
       );
-      console.log('+++++++++++');
+      console.log('11111111111111111');
       console.log(this.state.type);
     })
     .catch((error) => { console.log(error)});
   }
   render() {
+    
     return (
       <View style={{ flex: 1 }}>
         <Header Open={this.openTabView.bind(this)} />
@@ -70,7 +79,8 @@ export default class MainView extends Component {
               resizeMode="stretch"
             />}
             onPress={() => this.setState({ selectedTab: 'home' })}>
-            {<ListScreen screenProps={this.state.type}/>}
+            {<ListScreen screenProps={this.state.type}
+            />}
           </TabNavigator.Item>
           <TabNavigator.Item
             selected={this.state.selectedTab === 'profile'}
@@ -101,9 +111,9 @@ export default class MainView extends Component {
               source={require('../../images/cart_red.png')}
               resizeMode="stretch"
             />}
-            badgeText="3"
+            badgeText={this.state.cartArray.length}
             onPress={() => this.setState({ selectedTab: 'cart' })}>
-            {<DetailScreen />}
+            {<CartView cartArray={this.state.cartArray}/>}
           </TabNavigator.Item>
           <TabNavigator.Item
             selected={this.state.selectedTab === 'search'}

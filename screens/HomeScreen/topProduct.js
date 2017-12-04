@@ -6,11 +6,14 @@ import {
   Dimensions,
   StyleSheet,
   Image,
+  FlatList,
 } from 'react-native';
 
 const {height,width} = Dimensions.get('window');
 export default class TopProduct extends Component{
   render() {
+    const {goToDetail,topProduct}=this.props;
+    console.log(topProduct);
     return (
       <View style={styles.container}>
         <View style={styles.titleContainer}>
@@ -18,41 +21,24 @@ export default class TopProduct extends Component{
           TOP PRODUCT
         </Text>
         </View>
-        <View style={styles.body}>
-          <View style={styles.productContainer}>
-          <TouchableOpacity onPress={()=>{
-            const {goToDetail}=this.props;
-            goToDetail(55);
-          }}>
-          <Image style={styles.image}
-            resizeMode="stretch"
-          source={{uri:'https://i5.walmartimages.com/asr/20caa881-9f84-478b-8259-b9c3448e1007_1.f85576fe20ee4efe41421c04faaa310f.jpeg?odnHeight=450&odnWidth=450&odnBg=FFFFFF'}}/>
-          <Text style={styles.productName}> TÊN SẢN PHẨM </Text>
-          <Text style={styles.productPrice}> GIÁ : 150$ </Text>
-          </TouchableOpacity>
-          </View>
-          <View style={styles.productContainer}>
-          <Image style={styles.image}
-            resizeMode="stretch"
-          source={{uri:'https://i5.walmartimages.com/asr/20caa881-9f84-478b-8259-b9c3448e1007_1.f85576fe20ee4efe41421c04faaa310f.jpeg?odnHeight=450&odnWidth=450&odnBg=FFFFFF'}}/>
-          <Text style={styles.productName}> TÊN SẢN PHẨM </Text>
-          <Text style={styles.productPrice}> GIÁ : 150$ </Text>
-          </View>
-          <View style={styles.productContainer}>
-          <Image style={styles.image}
-            resizeMode="stretch"
-          source={{uri:'https://i5.walmartimages.com/asr/20caa881-9f84-478b-8259-b9c3448e1007_1.f85576fe20ee4efe41421c04faaa310f.jpeg?odnHeight=450&odnWidth=450&odnBg=FFFFFF'}}/>
-          <Text style={styles.productName}> TÊN SẢN PHẨM </Text>
-          <Text style={styles.productPrice}> GIÁ : 150$ </Text>
-          </View>
-          <View style={styles.productContainer}>
-          <Image style={styles.image}
-            resizeMode="stretch"
-          source={{uri:'https://i5.walmartimages.com/asr/20caa881-9f84-478b-8259-b9c3448e1007_1.f85576fe20ee4efe41421c04faaa310f.jpeg?odnHeight=450&odnWidth=450&odnBg=FFFFFF'}}/>
-          <Text style={styles.productName}> TÊN SẢN PHẨM </Text>
-          <Text style={styles.productPrice}> GIÁ : 150$ </Text>
-          </View>
-        </View>
+        <FlatList 
+        data={topProduct}
+          numColumns={2}
+          contentContainerStyle={styles.body}
+          renderItem={({ item }) =>
+            <View style={styles.productContainer}>
+              <TouchableOpacity onPress={() => {
+                goToDetail(55);
+              }}>
+                <Image style={styles.image}
+                  resizeMode="stretch"
+                  source={{ uri: 'https://i5.walmartimages.com/asr/20caa881-9f84-478b-8259-b9c3448e1007_1.f85576fe20ee4efe41421c04faaa310f.jpeg?odnHeight=450&odnWidth=450&odnBg=FFFFFF' }} />
+                <Text style={styles.productName}> {item.name} </Text>
+                <Text style={styles.productPrice}> GIÁ : {item.price}$ </Text>
+              </TouchableOpacity>
+            </View>
+          }
+        />
       </View>
     );
   }
@@ -87,9 +73,7 @@ const styles =StyleSheet.create({
   },
   body:{
     marginTop:3,
-    flexDirection:'row',
     justifyContent:'space-around',
-    flexWrap:'wrap'
   },
   productContainer:{
     width:(width-50)/2,

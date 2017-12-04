@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import {
   View,
   Text,
@@ -10,28 +10,32 @@ import {
 } from 'react-native';
 import getPhoneDetail from '../../WebServices/getPhoneDetail';
 import Swiper from 'react-native-swiper';
-
-const {height} =Dimensions.get('window');
-const url='https://funnyshopjonah.000webhostapp.com/images/product/';
-export default class ProductDetail extends Component{
-  constructor(props){
+import global from '../../../Global/global';
+const { height } = Dimensions.get('window');
+const url = 'https://funnyshopjonah.000webhostapp.com/images/product/';
+export default class ProductDetail extends Component {
+  constructor(props) {
     super(props);
-    this.state={
-      phoneDetail:{},
-      images:[]
+    this.state = {
+      phoneDetail: {},
+      images: []
     }
   }
-  componentDidMount(){
-    const {params} =this.props.navigation.state;
+  componentDidMount() {
+    const { params } = this.props.navigation.state;
     console.log(params);
     getPhoneDetail(params.id)
-    .then(phoneInformation=>{
-      this.setState({phoneDetail:phoneInformation[0]});
-      this.setState({images:this.state.phoneDetail.images});
-    })
+      .then(phoneInformation => {
+        this.setState({ phoneDetail: phoneInformation[0] });
+        this.setState({ images: this.state.phoneDetail.images });
+      })
+  }
+  addPhoneToCart(){
+    console.log(this.state.phoneDetail);
+    global.addPhoneToCart(this.state.phoneDetail);
   }
   render() {
-    const {navigation}=this.props;
+    const { navigation } = this.props;
     return (
       <View style={styles.container}>
         <View style={styles.wrapper}>
@@ -43,19 +47,26 @@ export default class ProductDetail extends Component{
             <Text style={styles.headerTitle}>
               {this.state.phoneDetail.name}
             </Text>
-            <View style={{ width: 35 }} />
+            <TouchableOpacity onPress={this.addPhoneToCart.bind(this)}>
+              <View>
+                <Image source={require('../../../images/addCart.png')}
+                  style={{ width: 20, height: 20 }}
+                >
+                </Image>
+              </View>
+            </TouchableOpacity>
           </View>
           <Swiper style={styles.swiperContainer}>
             <Image style={styles.swiperImage}
-                  source={{uri:`${url}${this.state.images[0]}`}}
+              source={{ uri: `${url}${this.state.images[0]}` }}
             >
-              </Image>
-              <Image style={styles.swiperImage}
-                  source={{uri:`${url}${this.state.images[1]}`}}
+            </Image>
+            <Image style={styles.swiperImage}
+              source={{ uri: `${url}${this.state.images[1]}` }}
             >
-              </Image>
-              <Text>
-                Xin chao
+            </Image>
+            <Text>
+              Xin chao
                 </Text>
           </Swiper>
           <View style={styles.description}>
@@ -82,7 +93,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'grey',
   },
   wrapper: {
-    flex:1,
+    flex: 1,
     backgroundColor: 'white',
     margin: 10,
     shadowColor: '#2E272B',
@@ -99,26 +110,26 @@ const styles = StyleSheet.create({
     borderBottomColor: 'orange',
     marginHorizontal: 10
   },
-  swiperContainer:{
-    marginTop:5,
-    height:height/3,
-    marginHorizontal:10
+  swiperContainer: {
+    marginTop: 5,
+    height: height / 3,
+    marginHorizontal: 10
   },
-  swiperImage:{
-    height:height/3,
-    marginHorizontal:10
+  swiperImage: {
+    height: height / 3,
+    marginHorizontal: 10
   },
   imageBack: {
     width: 30,
     height: 30
   },
-  description:{
-    flex:1,
-    backgroundColor:'#FFF',
-    flexDirection:'row'
+  description: {
+    flex: 1,
+    backgroundColor: '#FFF',
+    flexDirection: 'row'
   },
-  descriptionLeft:{
-    justifyContent:'space-between',
+  descriptionLeft: {
+    justifyContent: 'space-between',
 
   }
 });

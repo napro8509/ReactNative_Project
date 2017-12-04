@@ -15,10 +15,8 @@ const imageWidth = imageHeight*1.84;
 
 const url='https://funnyshopjonah.000webhostapp.com/images/type/';
 export default class Category extends Component {
-  openList(a){
-    
-  }
-  render() {
+  
+    render() {
     const { navigation,screenProps}= this.props;
     const getList=screenProps.map((data) => {
       return (

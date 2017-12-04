@@ -1,64 +1,62 @@
 
 import React, { Component } from 'react';
 import {
-    View, Text, TouchableOpacity, ListView,
-    Dimensions, StyleSheet, Image
+    View, Text, TouchableOpacity,
+    Dimensions, StyleSheet, Image, FlatList,
+    ScrollView
 } from 'react-native';
-import global from '../../../global';
-import sendOrder from '../../../../api/sendOrder';
-import getToken from '../../../../api/getToken';
 
 const url = 'http://localhost/api/images/product/';
 
 class CartView extends Component {
-
    
     render() {
         const { main, checkoutButton, checkoutTitle, wrapper,
             productStyle, mainRight, productController,
             txtName, txtPrice, productImage, numberOfProduct,
             txtShowDetail, showDetailContainer } = styles;
-        const { cartArray } = this.props;
-        const arrTotal = cartArray.map(e => e.product.price * e.quantity);
-        const total = arrTotal.length ? arrTotal.reduce((a, b) => a + b) : 0;
+            const { cartArray }=this.props;
         return (
-            <View style={wrapper}>
-                <ListView
-                    contentContainerStyle={main}
-                    enableEmptySections
-                    dataSource={new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 }).cloneWithRows(cartArray)}
-                    renderRow={cartItem => (
+            <View style={wrapper}>     
+            <ScrollView style={main}>         
+                        {cartArray.map(phone=>(
                         <View style={productStyle}>
-                            <Image source={{ uri: `${url}${cartItem.product.images[0]}` }} style={productImage} />
-                            <View style={[mainRight]}>
+                            <Image source={{uri:'https://funnyshopjonah.000webhostapp.com/images/product/54.jpg'}} style={productImage} />
+                            <View style={mainRight}>
                                 <View style={{ justifyContent: 'space-between', flexDirection: 'row' }}>
-                                    <Text style={txtName}>{toTitleCase(cartItem.product.name)}</Text>
-                                    <TouchableOpacity onPress={() => this.removeProduct(cartItem.product.id)}>
+                                    <Text style={txtName}>{phone.name}</Text>
+                                    <TouchableOpacity >
                                         <Text style={{ fontFamily: 'Avenir', color: '#969696' }}>X</Text>
                                     </TouchableOpacity>
                                 </View>
                                 <View>
-                                    <Text style={txtPrice}>{cartItem.product.price}$</Text>
+                                    <Text style={txtPrice}>{phone.price}$</Text>
                                 </View>
                                 <View style={productController}>
                                     <View style={numberOfProduct}>
-                                        <TouchableOpacity onPress={() => this.incrQuantity(cartItem.product.id)}>
+                                        <TouchableOpacity >
                                             <Text>+</Text>
                                         </TouchableOpacity>
-                                        <Text>{cartItem.quantity}</Text>
-                                        <TouchableOpacity onPress={() => this.decrQuantity(cartItem.product.id)}>
+                                        <Text>5</Text>
+                                        <TouchableOpacity>
                                             <Text>-</Text>
                                         </TouchableOpacity>
                                     </View>
-                                    <TouchableOpacity style={showDetailContainer} onPress={() => this.gotoDetail(cartItem.product)}>
+                                    <TouchableOpacity style={showDetailContainer}>
                                         <Text style={txtShowDetail}>SHOW DETAILS</Text>
                                     </TouchableOpacity>
                                 </View>
                             </View>
-                        </View>
-                    )}
-                />
-                
+                        </View> 
+                        ))}
+                        </ScrollView>
+                        <TouchableOpacity>
+                        <View style={styles.total}>
+                            <Text style={styles.totalValue}>
+                                1500$
+                            </Text>
+                        </View>       
+                        </TouchableOpacity>  
             </View>
         );
     }
@@ -71,7 +69,7 @@ const imageHeight = (imageWidth * 452) / 361;
 const styles = StyleSheet.create({
     wrapper: {
         flex: 1,
-        backgroundColor: '#DFDFDF'
+        backgroundColor: '#DFDFDF',
     },
     checkoutButton: {
         height: 50,
@@ -93,7 +91,7 @@ const styles = StyleSheet.create({
     },
     productStyle: {
         flexDirection: 'row',
-        margin: 10,
+        margin:10,
         padding: 10,
         backgroundColor: '#FFFFFF',
         borderRadius: 2,
@@ -144,6 +142,18 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'row',
         justifyContent: 'flex-end'
+    },
+    total:{
+        marginBottom:10,
+        marginHorizontal:5,
+        backgroundColor:'green',
+        height:50,
+        justifyContent:'center',
+        alignItems:'center',
+    },
+    totalValue:{
+        color:'white',
+        fontSize:20
     }
 });
 
