@@ -14,12 +14,23 @@ export default class HomeScreen extends Component {
   /*static navigationOptions={
     title:'Home Screen'
   };*/
-
+  constructor(props){
+    super(props);
+    this.state={
+      topProduct:[],
+    }
+  }
+  componentDidMount(){
+    fetch("https://funnyshopjonah.000webhostapp.com")
+    .then(response =>response.json())
+    .then(responseJson=>{
+      this.setState({topProduct:responseJson.product});
+      console.log(this.state.topProduct);
+    })
+  }
   render() {
     const { navigation } = this.props;
     const {screenProps}= this.props;
-    console.log("1111111");
-    console.log(screenProps)
     return (
       <ScrollView>
         <View style={{ flex: 1, backgroundColor: 'grey' }}>
@@ -30,7 +41,7 @@ export default class HomeScreen extends Component {
             <GiftVoucher />
           </TouchableOpacity>
           <TopProduct goToDetail={(idPhone) => { navigation.navigate('ProductDetail', { id: idPhone }); }}
-            topProduct={screenProps}
+            topProduct={this.state.topProduct}
           />
           <Category goToList={(idList) => { navigation.navigate('ListProduct', { id: idList }); }}
             screenProps={screenProps}

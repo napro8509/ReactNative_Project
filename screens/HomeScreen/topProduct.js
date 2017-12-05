@@ -9,11 +9,11 @@ import {
   FlatList,
 } from 'react-native';
 
+const url='';
 const {height,width} = Dimensions.get('window');
 export default class TopProduct extends Component{
   render() {
     const {goToDetail,topProduct}=this.props;
-    console.log(topProduct);
     return (
       <View style={styles.container}>
         <View style={styles.titleContainer}>
@@ -28,16 +28,17 @@ export default class TopProduct extends Component{
           renderItem={({ item }) =>
             <View style={styles.productContainer}>
               <TouchableOpacity onPress={() => {
-                goToDetail(55);
+                goToDetail(item.id);
               }}>
                 <Image style={styles.image}
                   resizeMode="stretch"
                   source={{ uri: 'https://i5.walmartimages.com/asr/20caa881-9f84-478b-8259-b9c3448e1007_1.f85576fe20ee4efe41421c04faaa310f.jpeg?odnHeight=450&odnWidth=450&odnBg=FFFFFF' }} />
                 <Text style={styles.productName}> {item.name} </Text>
-                <Text style={styles.productPrice}> GIÁ : {item.price}$ </Text>
+                <Text style={styles.productPrice}> Price : {item.price}$ </Text>
               </TouchableOpacity>
             </View>
           }
+          keyExtractor={(item, index) => item.id}
         />
       </View>
     );
@@ -68,21 +69,24 @@ const styles =StyleSheet.create({
     fontWeight:'bold'
   },
   image:{
-    height:(width-50)/2,
+    height:(width-70)/2,
     width:(width-50)/2,
+    marginVertical:10
   },
   body:{
     marginTop:3,
-    justifyContent:'space-around',
+    justifyContent:'center',
   },
   productContainer:{
-    width:(width-50)/2,
+    width:(width-70)/2,
     shadowColor:'#2E272B',
     shadowOffset:{width:0,height:3},
     shadowOpacity:0.2,
     elevation:3,
     backgroundColor:'#FFF',
-    marginTop:10
+    marginTop:10,
+    marginLeft:15,
+    marginBottom:10
   },
   productName:{
     marginLeft:10,

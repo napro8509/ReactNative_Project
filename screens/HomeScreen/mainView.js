@@ -17,6 +17,8 @@ import ListProduct from './ProductInformation/listProduct';
 import ProductDetail from './ProductInformation/productDetail';
 import CartView from './Cart/Cart';
 import global from '../../Global/global';
+import getCart from '../../Api/getCart';
+import saveCart from '../../Api/saveCart';
 export const ListScreen = StackNavigator({
   Shop: { screen: HomeScreen },
   Search: { screen: SearchScreen },
@@ -42,9 +44,45 @@ export default class MainView extends Component {
       cartArray:[]
     }
     global.addPhoneToCart=this.addPhoneToCart.bind(this);
+    global.addQuantity=this.addQuantity.bind(this);
+    global.subQuantity=this.subQuantity.bind(this);
+    global.removeCart=this.removeCart.bind(this);
   }
   addPhoneToCart(phone){
-    this.setState({cartArray:this.state.cartArray.concat(phone)});
+    this.setState({cartArray:this.state.cartArray.concat({phone,quantity:1})},()=>saveCart(this.state.cartArray));
+  }
+  removeCart(phoneId){
+    console.log('Remove cart Main View');
+    const array=this.state.cartArray.filter(e=>e.phone.id!==phoneId);
+    this.setState({cartArray:array},()=>saveCart(this.state.cartArray))
+  }
+  addQuantity(phoneId){
+    console.log('Add quantity Main View');
+    const array=this.state.cartArray.map(e=>{
+      if(e.phone.id!==phoneId)
+      {
+        return e;
+      }
+      else  return {
+        phone:e.phone,
+        quantity:e.quantity+1
+      };
+    });
+    this.setState({cartArray:array},()=>saveCart(this.state.cartArray))
+  }
+  subQuantity(phoneId){
+    console.log('Sub quantity Main View');
+    const array=this.state.cartArray.map(e=>{
+      if(e.phone.id!==phoneId||e.quantity<=1)
+      {
+        return e;
+      }
+      else  return {
+        phone:e.phone,
+        quantity:e.quantity-1
+      };
+    });
+    this.setState({cartArray:array},()=>saveCart(this.state.cartArray))
   }
   componentDidMount() {
     fetch("https://funnyshopjonah.000webhostapp.com")
@@ -57,6 +95,10 @@ export default class MainView extends Component {
       console.log(this.state.type);
     })
     .catch((error) => { console.log(error)});
+    getCart()
+    .then(cartJson =>{
+      this.setState({cartArray:cartJson})
+    })
   }
   render() {
     
