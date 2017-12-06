@@ -47,9 +47,33 @@ export default class MainView extends Component {
     global.addQuantity=this.addQuantity.bind(this);
     global.subQuantity=this.subQuantity.bind(this);
     global.removeCart=this.removeCart.bind(this);
+    checkExist=this.checkExist.bind(this);
+  }
+   checkExist=(array,id)=>{
+     let a;
+     console.log("Vao check exist");
+    array.map(e=>{
+      if(e.phone.id===id){
+        console.log('true');
+        a=1;
+        return 1;
+      }
+    });
+    if(a!==1){
+    console.log('false');
+    return 0;
+    }
+    else return 1;
   }
   addPhoneToCart(phone){
+    console.log(checkExist(this.state.cartArray,phone.id));
+    console.log("check ham");
+    if(checkExist(this.state.cartArray,phone.id)===1){
+      global.addQuantity(phone.id);
+      console.log('Them so luong');
+    }else
     this.setState({cartArray:this.state.cartArray.concat({phone,quantity:1})},()=>saveCart(this.state.cartArray));
+    console.log('Them phone');
   }
   removeCart(phoneId){
     console.log('Remove cart Main View');

@@ -12,14 +12,16 @@ export default class MenuView extends Component{
   constructor(props){
     super(props);
     this.state = {
-      isLogIn:true,
+      isLogIn:false,
     };
   };
   render() {
     const {navigate} =this.props.navigation;
     const LogInJSX=(
       <View style= { styles.allbutton}>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={()=>{
+        navigate('Authentication');
+      }}>
         <View style={styles.button}>
         <Text style={styles.text}>
           Sign In

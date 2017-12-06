@@ -8,7 +8,7 @@ import {
   Image
 } from 'react-native';
 import { StackNavigator } from 'react-navigation';
-export default class LogIn extends Component<{}>{
+export default class LogIn extends Component{
     render() {
       const { navigate }= this.props.navigation;
       return (

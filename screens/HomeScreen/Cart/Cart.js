@@ -124,7 +124,8 @@ const styles = StyleSheet.create({
         borderRadius: 2,
         shadowColor: '#3B5458',
         shadowOffset: { width: 0, height: 3 },
-        shadowOpacity: 0.2
+        shadowOpacity: 0.2,
+        elevation:7
     },
     productImage: {
         width: imageWidth,

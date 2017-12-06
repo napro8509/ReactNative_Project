@@ -54,7 +54,7 @@ const styles =StyleSheet.create({
     shadowOpacity:0.2,
     elevation:3,
     paddingBottom:10,
-    paddingTop:10
+    paddingTop:10,
   },
   titleContainer:{
     backgroundColor:'white',
@@ -82,11 +82,12 @@ const styles =StyleSheet.create({
     shadowColor:'#2E272B',
     shadowOffset:{width:0,height:3},
     shadowOpacity:0.2,
-    elevation:3,
+    elevation:7,
     backgroundColor:'#FFF',
     marginTop:10,
     marginLeft:15,
-    marginBottom:10
+    marginBottom:10,
+    borderRadius:5
   },
   productName:{
     marginLeft:10,

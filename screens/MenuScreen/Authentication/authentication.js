@@ -9,6 +9,7 @@ import {
   TextInput
 } from 'react-native';
 import { StackNavigator } from 'react-navigation';
+import register from '../../WebServices/Register';
 const {width, height}=Dimensions.get('window');
 
 
@@ -17,10 +18,15 @@ export default class Authentication extends Component{
   constructor(props){
     super(props);
     this.state= {
-      isSignIn: false
+      isSignIn: false,
+      name:'',
+      email:'',
+      password:'',
+      rePassword:''
     };
   };
-
+  componentDidMount(){
+  }
   signUpState(){
     this.setState({isSignIn:false});
     console.log('----ham sign up');
@@ -32,6 +38,11 @@ export default class Authentication extends Component{
     console.log(this.state.isSignIn);
   }
 
+  signUp(){
+    const {name,email,password,rePassword}=this.state;
+    register(name,email,password)
+    .then(res=>console.log(res))
+  }
   render() {
     const SignInJSX=(
       <View style={styles.body}>
@@ -61,24 +72,34 @@ export default class Authentication extends Component{
       <TextInput style={styles.textInput}
                   underlineColorAndroid='transparent'
                   placeholder='Enter your username'
+                  value={this.state.name}
+                  onChangeText={text=>this.setState({name:text})}
       >
       </TextInput>
       <TextInput style={styles.textInput}
                   underlineColorAndroid='transparent'
                   placeholder='Enter your email'
+                  value={this.state.email}
+                  onChangeText={text=>this.setState({email:text})}
       >
       </TextInput>
       <TextInput style={styles.textInput}
                   underlineColorAndroid='transparent'
                   placeholder='Enter your password'
+                  value={this.state.password}
+                  secureTextEntry
+                  onChangeText={text=>this.setState({password:text})}
       >
       </TextInput>
       <TextInput style={styles.textInput}
                   underlineColorAndroid='transparent'
                   placeholder='Re-enter your password'
+                  value={this.state.rePassword}
+                  secureTextEntry
+                  onChangeText={text=>this.setState({rePassword:text})}
       >
       </TextInput>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={this.signUp.bind(this)}>
       <View style={styles.button}>
         <Text style={{color:'#3399FF'}}>
           Sign Up Now

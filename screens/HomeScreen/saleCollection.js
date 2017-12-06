@@ -38,7 +38,8 @@ const styles= StyleSheet.create({
     shadowColor:'#2E272B',
     shadowOffset:{width:0,height:3},
     shadowOpacity:0.2,
-    elevation:3
+    elevation:3,
+    borderRadius:5
   },
   text:{
     fontSize:15,
