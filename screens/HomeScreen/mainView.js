@@ -15,7 +15,7 @@ import Header from '../../Header/header';
 import TabNavigator from 'react-native-tab-navigator';
 import ListProduct from './ProductInformation/listProduct';
 import ProductDetail from './ProductInformation/productDetail';
-import CartView from './Cart/Cart';
+import CartTab from './Cart/CartTab';
 import global from '../../Global/global';
 import getCart from '../../Api/getCart';
 import saveCart from '../../Api/saveCart';
@@ -155,7 +155,7 @@ export default class MainView extends Component {
             />}
             badgeText={this.state.cartArray.length}
             onPress={() => this.setState({ selectedTab: 'cart' })}>
-            {<CartView cartArray={this.state.cartArray}/>}
+            {<CartTab cartArray={this.state.cartArray}/>}
           </TabNavigator.Item>
           <TabNavigator.Item
             selected={this.state.selectedTab === 'search'}

@@ -25,8 +25,13 @@ class CartView extends Component {
             productStyle, mainRight, productController,
             txtName, txtPrice, productImage, numberOfProduct,
             txtShowDetail, showDetailContainer } = styles;
-        const { cartArray } = this.props;
+        const  cartArray  = this.props.screenProps;
+        const {navigate}=this.props.navigation;
         console.log(cartArray);
+        let tien=0;
+        cartArray.map(e=>{
+            tien+=e.phone.price*e.quantity;
+        })
         return (
             <View style={wrapper}>
                 <FlatList
@@ -60,7 +65,10 @@ class CartView extends Component {
                                 <Text>-</Text>
                             </TouchableOpacity>
                         </View>
-                        <TouchableOpacity style={showDetailContainer}>
+                        <TouchableOpacity onPress={()=>{
+                            navigate('ProductDetail',{id:item.phone.id});
+                        }}
+                        style={showDetailContainer}>
                             <Text style={txtShowDetail}>SHOW DETAILS</Text>
                         </TouchableOpacity>
                     </View>
@@ -72,7 +80,7 @@ class CartView extends Component {
                 <TouchableOpacity>
                     <View style={styles.total}>
                         <Text style={styles.totalValue}>
-                            1500$
+                            Check Out {tien}$ Now
                             </Text>
                     </View>
                 </TouchableOpacity>
