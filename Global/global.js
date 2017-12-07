@@ -3,4 +3,5 @@ module.export={
     addQuantity:null,
     subQuantity:null,
     removeCart:null,
+    onLogIn:null
 };

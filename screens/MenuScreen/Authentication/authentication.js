@@ -6,10 +6,13 @@ import {
   StyleSheet,
   Dimensions,
   Image,
-  TextInput
+  TextInput,
+  Alert
 } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import register from '../../WebServices/Register';
+import signIn from '../../WebServices/signIn';
+import global from '../../../Global/global';
 const {width, height}=Dimensions.get('window');
 
 
@@ -37,27 +40,71 @@ export default class Authentication extends Component{
     console.log('----ham sign in');
     console.log(this.state.isSignIn);
   }
+  goToSignIn(){
+    this.setState({isSignIn:true});
+  }
+  onSuccess(){
+    Alert.alert(
+      'Notification',
+      'Sign Up Success!',
+      [
+        {text: 'OK', onPress: () => this.setState({isSignIn:true,})},
+      ],
+      { cancelable: false }
+    )
+  }
+  onFail(){
+    Alert.alert(
+      'Notification',
+      'Your Email has been existed!',
+      [
+        {text:'OK',onPress:()=>this.setState({email:''})},
+      ],
+      { cancelable:false }
+    )
+  }
 
-  signUp(){
+  signInMethod(){
+    const {email,password}=this.state;
+    signIn(email,password)
+    .then(res=>console.log(res))
+    .catch(error=>console.log(error));
+    global.onLogIn();
+    const {navigation}=this.props;
+    navigation.goBack();
+  }
+
+  signUpMethod(){
     const {name,email,password,rePassword}=this.state;
     register(name,email,password)
-    .then(res=>console.log(res))
+    .then(res=>{
+      if(res=='THANH_CONG')
+        this.onSuccess();
+        else {
+          this.onFail();
+        }
+    })
   }
   render() {
     const SignInJSX=(
       <View style={styles.body}>
       <TextInput style={styles.textInput}
                   underlineColorAndroid='transparent'
-                  placeholder='Enter your username'
+                  placeholder='Enter your email'
+                  value={this.state.email}
+                  onChangeText={text=>this.setState({email:text})}
       >
       </TextInput>
       <TextInput style={styles.textInput}
                   underlineColorAndroid='transparent'
                   placeholder='Enter your password'
+                  value={this.state.password}
+                  secureTextEntry
+                  onChangeText={text=>this.setState({password:text})}
       >
       </TextInput>
 
-      <TouchableOpacity>
+      <TouchableOpacity onPress={this.signInMethod.bind(this)}>
       <View style={styles.button}>
         <Text style={{color:'#3399FF'}}>
           Sign In Now
@@ -99,7 +146,7 @@ export default class Authentication extends Component{
                   onChangeText={text=>this.setState({rePassword:text})}
       >
       </TextInput>
-      <TouchableOpacity onPress={this.signUp.bind(this)}>
+      <TouchableOpacity onPress={this.signUpMethod.bind(this)}>
       <View style={styles.button}>
         <Text style={{color:'#3399FF'}}>
           Sign Up Now

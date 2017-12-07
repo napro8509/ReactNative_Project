@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import global from '../../Global/global';
 import {
   View,
   Text,
@@ -14,7 +15,11 @@ export default class MenuView extends Component{
     this.state = {
       isLogIn:false,
     };
+    global.onLogIn=this.onLogIn.bind(this);
   };
+  onLogIn(){
+    this.setState({isLogIn:true})
+  }
   render() {
     const {navigate} =this.props.navigation;
     const LogInJSX=(
@@ -50,7 +55,7 @@ export default class MenuView extends Component{
         </View>
       </TouchableOpacity>
       <TouchableOpacity onPress={()=>{
-        navigate('Login');
+        this.setState({isLogIn:false})
       }}>
         <View style={styles.button}>
         <Text style={styles.text}>

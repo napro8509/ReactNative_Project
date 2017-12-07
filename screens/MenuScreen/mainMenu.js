@@ -11,13 +11,12 @@ import Authentication from './Authentication/authentication';
 
 const MainMenuScreen=StackNavigator({
   Information:{screen: MenuView},
-  Login:{screen: LogIn},
   Authentication:{screen: Authentication}
 },
   {
     headerMode:'none',
   });
-export default class MainMenu extends Component<{}>{
+export default class MainMenu extends Component{
   render() {
     return (
       <MainMenuScreen/>

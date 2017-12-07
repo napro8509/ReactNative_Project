@@ -178,6 +178,11 @@ const styles = StyleSheet.create({
         height: 50,
         justifyContent: 'center',
         alignItems: 'center',
+        borderRadius: 2,
+        shadowColor: '#3B5458',
+        shadowOffset: { width: 0, height: 3 },
+        shadowOpacity: 0.2,
+        elevation:7
     },
     totalValue: {
         color: 'white',
