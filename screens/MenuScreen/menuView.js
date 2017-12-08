@@ -14,11 +14,12 @@ export default class MenuView extends Component{
     super(props);
     this.state = {
       isLogIn:false,
+      user:{}
     };
     global.onLogIn=this.onLogIn.bind(this);
   };
-  onLogIn(){
-    this.setState({isLogIn:true})
+  onLogIn(user){
+    this.setState({isLogIn:true,user})
   }
   render() {
     const {navigate} =this.props.navigation;
@@ -38,7 +39,7 @@ export default class MenuView extends Component{
 
     const LogOutJSX=(
       <View style={{flex:1, justifyContent:'space-between',alignItems:'center'}}>
-      <Text style={styles.name}>Le Gio Na</Text>
+      <Text style={styles.name}>{this.state.user.name?this.state.user.name:''}</Text>
       <View style={styles.allbutton}>
       <TouchableOpacity>
         <View style={styles.button}>

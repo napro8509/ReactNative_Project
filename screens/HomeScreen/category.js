@@ -29,7 +29,7 @@ export default class Category extends Component {
           }}>
             <Text>{data.name}</Text>
             <Image source={{ uri: `${url}${data.image}` }}
-              style={{ width: 100, height: 50 }}
+              style={{ width: imageWidth, height: imageHeight }}
             />
           </TouchableOpacity>
         </View>

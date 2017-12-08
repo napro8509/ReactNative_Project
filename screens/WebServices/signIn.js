@@ -7,6 +7,7 @@ const signIn =(email,password) =>(
         },
         body:JSON.stringify({email,password})
     })
-    .then(res=>res.json())
+    .then(res=>res.json()
+    )
 );
 module.exports= signIn;

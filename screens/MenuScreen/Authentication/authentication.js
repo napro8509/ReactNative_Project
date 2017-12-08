@@ -63,15 +63,31 @@ export default class Authentication extends Component{
       { cancelable:false }
     )
   }
+  signInError(){
+    Alert.alert(
+      'Notification',
+      'Wrong email or password',
+      [
+        {text:'OK',onPress:()=>this.setState({email:'',password:''})},
+      ],
+      { cancelable:false }
+    )
+  }
 
   signInMethod(){
     const {email,password}=this.state;
+    console.log(email,password);
     signIn(email,password)
-    .then(res=>console.log(res))
-    .catch(error=>console.log(error));
-    global.onLogIn();
-    const {navigation}=this.props;
-    navigation.goBack();
+    .then(res=>{
+          console.log(res.token);
+          global.onLogIn(res.user);
+          const {navigation}=this.props;
+          navigation.goBack();
+        }
+    )
+    .catch(error=>{
+      this.signInError();
+    });
   }
 
   signUpMethod(){
