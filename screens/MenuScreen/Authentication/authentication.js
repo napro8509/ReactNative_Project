@@ -13,6 +13,7 @@ import { StackNavigator } from 'react-navigation';
 import register from '../../WebServices/Register';
 import signIn from '../../WebServices/signIn';
 import global from '../../../Global/global';
+import saveToken from '../../../Api/saveToken';
 const {width, height}=Dimensions.get('window');
 
 
@@ -81,6 +82,7 @@ export default class Authentication extends Component{
     .then(res=>{
           console.log(res.token);
           global.onLogIn(res.user);
+          saveToken(res.token);
           const {navigation}=this.props;
           navigation.goBack();
         }

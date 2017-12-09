@@ -11,7 +11,9 @@ import HomeScreen from '../screens/HomeScreen/homeScreen';
 import SearchScreen from '../screens/HomeScreen/searchScreen';
 import MenuView from '../screens/MenuScreen/menuView';
 import MainMenu from '../screens/MenuScreen/mainMenu';
-
+import getToken from '../Api/getToken';
+import checkLogIn from '../Api/checkToken';
+import global from '../Global/global';
 //import cuasochinh from './mainView';
 export const ListScreen=StackNavigator({
   Shop:{screen: HomeScreen},
@@ -19,6 +21,16 @@ export const ListScreen=StackNavigator({
 });
 
 export default class App extends Component {
+  componentDidMount(){
+    getToken()
+    .then(res=>checkLogIn(res))
+    .then(response=>
+      {
+        console.log(response);
+        global.onLogIn(response.user)
+      })
+    .catch(error=>console.log(error));
+  }
   closeControlPanel = () => {
    this.drawer.close()
  };
