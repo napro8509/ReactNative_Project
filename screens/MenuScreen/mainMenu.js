@@ -8,10 +8,12 @@ import { StackNavigator } from 'react-navigation';
 import MenuView from './menuView';
 import LogIn from './logIn';
 import Authentication from './Authentication/authentication';
+import ChangeInfo from './ChangeInformation/changeInfo';
 
 const MainMenuScreen=StackNavigator({
   Information:{screen: MenuView},
-  Authentication:{screen: Authentication}
+  Authentication:{screen: Authentication},
+  ChangeInformation:{screen: ChangeInfo}
 },
   {
     headerMode:'none',

@@ -48,7 +48,9 @@ export default class MenuView extends Component{
         </Text>
         </View>
       </TouchableOpacity>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={()=>{
+        navigate('ChangeInformation',{user:this.state.user});
+      }}>
         <View style={styles.button}>
         <Text style={styles.text}>
           Change Information
