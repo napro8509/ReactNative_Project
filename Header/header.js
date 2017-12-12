@@ -8,12 +8,22 @@ import {
   StyleSheet,
   TextInput
 } from 'react-native';
-
+import global from '../Global/global';
 const {height} = Dimensions.get('window');
 export default class Header extends Component{
+  constructor(props){
+    super(props);
+    this.state={
+      key:''
+    }
+  }
   openDrawer(){
     const{Open}=this.props;
     Open();
+  }
+  goToSearch(){
+    console.log('Go to search');
+    global.openSearch(this.state.key);
   }
   render(){
     return(
@@ -38,6 +48,10 @@ export default class Header extends Component{
         <TextInput style={styles.title}
                     underlineColorAndroid='transparent'
                     placeholder='Searching for something?'
+                    onChangeText={(text)=>{
+                      this.setState({key:text});
+                    }}
+                    onEndEditing={this.goToSearch.bind(this)}
         >
         </TextInput>
       </View>

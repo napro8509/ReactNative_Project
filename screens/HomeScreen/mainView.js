@@ -19,6 +19,8 @@ import CartTab from './Cart/CartTab';
 import global from '../../Global/global';
 import getCart from '../../Api/getCart';
 import saveCart from '../../Api/saveCart';
+import  SearchNavigator  from './Search/SearchTab';
+import searchPhone from '../../Api/searchPhone';
 export const ListScreen = StackNavigator({
   Shop: { screen: HomeScreen },
   Search: { screen: SearchScreen },
@@ -47,6 +49,7 @@ export default class MainView extends Component {
     global.addQuantity=this.addQuantity.bind(this);
     global.subQuantity=this.subQuantity.bind(this);
     global.removeCart=this.removeCart.bind(this);
+    global.openSearch=this.openSearch.bind(this);
     checkExist=this.checkExist.bind(this);
   }
    checkExist=(array,id)=>{
@@ -108,6 +111,13 @@ export default class MainView extends Component {
     });
     this.setState({cartArray:array},()=>saveCart(this.state.cartArray))
   }
+  openSearch(key){
+    this.setState({selectedTab:'search'});
+    searchPhone(key)
+    .then(res=>{
+      global.SearchArray(res);
+    }).catch(error=>global.SearchArray([]));
+  }
   componentDidMount() {
     fetch("https://funnyshopjonah.000webhostapp.com")
     .then((response) => response.json())
@@ -115,8 +125,6 @@ export default class MainView extends Component {
       this.setState(
          {type:responseJson.type}
       );
-      console.log('11111111111111111');
-      console.log(this.state.type);
     })
     .catch((error) => { console.log(error)});
     getCart()
@@ -195,7 +203,7 @@ export default class MainView extends Component {
               resizeMode="stretch"
             />}
             onPress={() => this.setState({ selectedTab: 'search' })}>
-            {<DetailScreen />}
+            {<SearchNavigator />}
           </TabNavigator.Item>
         </TabNavigator>
       </View>
