@@ -6,9 +6,19 @@ import {
     ScrollView
 } from 'react-native';
 import global from '../../../Global/global';
-const url = 'http://localhost/api/images/product/';
-
+import getToken from '../../../Api/getToken';
+import sendOrder from '../../../Api/sendOrder';
 class CartView extends Component {
+    async onSendOrder(){
+            const token=await getToken();
+            const arrayDetail=this.props.screenProps.map(e=>({
+                id:e.phone.id,
+                quantity:e.quantity
+            }));
+            console.log(token)
+            const kq= await sendOrder(token,arrayDetail);
+            console.log(kq);
+    }
 
     incrQuantity(id){
         global.addQuantity(id);
@@ -77,10 +87,10 @@ class CartView extends Component {
             }
             keyExtractor={(item,index)=>item.phone.id}
                 />
-                <TouchableOpacity>
+                <TouchableOpacity onPress={this.onSendOrder.bind(this)}>
                     <View style={styles.total}>
                         <Text style={styles.totalValue}>
-                            Check Out {tien}$ Now
+                            CHECK OUT {tien}$ NOW
                             </Text>
                     </View>
                 </TouchableOpacity>

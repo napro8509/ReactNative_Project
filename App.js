@@ -1,75 +1,25 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
-
-import React, { Component } from 'react';
+import React,{ Component } from "react";
 import {
-  Platform,
-  StyleSheet,
-  Text,
-  View,
-  FlatList
+
 } from 'react-native';
+import App from './components/demoDrawer';
+import OrderHistory from './screens/HomeScreen/orderHistory';
+import {StackNavigator} from 'react-navigation'; 
 
-
-
-export default class App extends Component<{}> {
-	constructor(prop){
-		super(prop);
-		this.state={
-			mang:[
-				{key:'a',hoten:'Na'},
-				{key:'b',hoten:'Nguyen'},
-				{key:'c',hoten:'Lan'},
-				{key:'d',hoten:'Sanh'},
-				{key:'c',hoten:'Lan'},
-				{key:'d',hoten:'Sanh'},
-				{key:'c',hoten:'Lan'},
-				{key:'d',hoten:'Sanh'},
-				{key:'c',hoten:'Lan'},
-				{key:'d',hoten:'Sanh'},
-				{key:'c',hoten:'Lan'},
-				{key:'d',hoten:'Sanh'},
-				{key:'c',hoten:'Lan'},
-				{key:'d',hoten:'Sanh'},
-				{key:'c',hoten:'Lan'},
-				{key:'d',hoten:'Sanh'},
-			]
-		}
-	}
-  render() {
-    return (
-      <View >
-       <FlatList
-       		data={this.state.mang}
-       		renderItem=
-       		{({item})=> 
-       		<View style={styles.row}>
-       		<Text>{item.key}
-       		</Text>
-       		
-       		<Text>{item.hoten}
-       		</Text>
-       		</View>
-       		}
-       		horizontal={false}
-       		numColumns={3}
-       		/> 
-       	
-      </View>
-    );
-  }
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
+ export const Main = StackNavigator({
+		App: { screen: App },
+		OrderHistory: { screen: OrderHistory }
   },
-  row:{
-  	borderBottomWidth:1,
-  	padding:50,
-  	borderRightWidth:1
-  }
-});
+    {
+      headerMode: 'none'
+    }
+  );
+
+export default class App1 extends Component {
+
+    render(){
+        return(
+            <Main/>
+        );
+    }
+}

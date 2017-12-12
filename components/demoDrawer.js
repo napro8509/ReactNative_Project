@@ -21,6 +21,10 @@ export const ListScreen=StackNavigator({
 });
 
 export default class App extends Component {
+  openOrder(){
+    const {navigation}=this.props;
+    navigation.navigate('OrderHistory');
+  }
   componentDidMount(){
     getToken()
     .then(res=>checkLogIn(res))
@@ -37,11 +41,12 @@ export default class App extends Component {
  openControlPanel = () => {
    this.drawer.open()
  };
- constructor(prop){
-   super(prop);
+ constructor(props){
+   super(props);
    this.state={
      selectedTab:'home'
    }
+   global.goToOrder=this.openOrder.bind(this);
  }
 
   render(){

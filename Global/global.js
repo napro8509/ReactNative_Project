@@ -5,5 +5,6 @@ module.export={
     removeCart:null,
     onLogIn:null,
     openSearch:null,
-    SearchArray:null
+    SearchArray:null,
+    goToOrder:null
 };

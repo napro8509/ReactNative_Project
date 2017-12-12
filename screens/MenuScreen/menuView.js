@@ -21,6 +21,9 @@ export default class MenuView extends Component{
   onLogIn(user){
     this.setState({isLogIn:true,user})
   }
+  openOder(){
+    global.goToOrder();
+  }
   render() {
     const {navigate} =this.props.navigation;
     const LogInJSX=(
@@ -41,10 +44,10 @@ export default class MenuView extends Component{
       <View style={{flex:1, justifyContent:'space-between',alignItems:'center'}}>
       <Text style={styles.name}>{this.state.user.name?this.state.user.name:''}</Text>
       <View style={styles.allbutton}>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={this.openOder.bind(this)}>
         <View style={styles.button}>
         <Text style={styles.text}>
-          Oder History
+          Order History
         </Text>
         </View>
       </TouchableOpacity>
