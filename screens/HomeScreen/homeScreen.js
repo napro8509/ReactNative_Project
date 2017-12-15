@@ -33,10 +33,9 @@ export default class HomeScreen extends Component {
     const {screenProps}= this.props;
     return (
       <ScrollView>
-        <View style={{ flex: 1, backgroundColor: '#DFDFDF' }}>
-          <TouchableOpacity>
-            <SaleCollection />
-          </TouchableOpacity>
+        <View style={{ flex: 1, backgroundColor: '#FFF' }}>
+
+            <SaleCollection goToList={()=>{navigation.navigate('ListProduct',{id:'COLLECTION'})}}/>
           <TouchableOpacity>
             <GiftVoucher />
           </TouchableOpacity>

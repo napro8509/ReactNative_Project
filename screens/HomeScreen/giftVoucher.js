@@ -9,16 +9,11 @@ import {
 
 const {height}=Dimensions.get('window');
 const imageHeight = height*0.37*5/6;
-const imageWidth = imageHeight*1.84;
-export default class GitfVoucher extends Component<{}>{
+const imageWidth = imageHeight*1.88;
+export default class GitfVoucher extends Component{
   render() {
     return (
       <View style={styles.collecions}>
-        <View style={{flex:1,justifyContent:'center'}}>
-        <Text style={styles.text}>
-          GIFT VOUCHER
-        </Text>
-        </View>
         <View style={{flex:5,justifyContent:'center',alignItems:'center'}}>
           <Image
             source={{uri:'http://en.data.coolicool.com/topic/blackview/banner.jpg'}}
@@ -33,7 +28,7 @@ export default class GitfVoucher extends Component<{}>{
 const styles= StyleSheet.create({
   collecions:{
     backgroundColor:'#FFF',
-    height:height*0.35,
+    height:imageHeight,
     margin:10,
     shadowColor:'#2E272B',
     shadowOffset:{width:0,height:3},

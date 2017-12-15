@@ -28,7 +28,7 @@ export default class Header extends Component{
   render(){
     return(
       <View style={styles.container}>
-      <View style={{flex:1,flexDirection:'row',justifyContent:'space-between',alignItems:'center'}}>
+      <View style={{flex:1,flexDirection:'row',justifyContent:'space-between',alignItems:'center',marginTop:3}}>
         <TouchableOpacity onPress={this.openDrawer.bind(this)}>
           <Image style={styles.image}
              source={require('../images/menu.png')}
@@ -44,7 +44,7 @@ export default class Header extends Component{
           />
           </TouchableOpacity>
       </View>
-      <View style={{flex:1}}>
+      <View style={{flex:1,height:height/25}}>
         <TextInput style={styles.title}
                     underlineColorAndroid='transparent'
                     placeholder='Searching for something?'
@@ -61,14 +61,13 @@ export default class Header extends Component{
 }
 const styles=StyleSheet.create({
   container:{
-    height: height/8 ,
+    height: height/10 ,
     backgroundColor:'#183544',
     paddingLeft:15,
     paddingRight:15,
-    //paddingTop:10,
+    paddingTop:0,
     justifyContent:'center',
-    borderBottomWidth:1,
-    borderColor:'white'
+
   },
   image:{
     height:height/17,
@@ -80,8 +79,8 @@ const styles=StyleSheet.create({
     backgroundColor:'white',
     marginLeft:5,
     marginRight:5,
-    marginTop:5,
-    marginBottom:10,
+    marginTop:1,
+    marginBottom:2,
     paddingVertical:0,
     borderRadius:10,
     paddingLeft:10

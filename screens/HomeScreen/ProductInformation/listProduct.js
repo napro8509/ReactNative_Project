@@ -100,7 +100,6 @@ export default class ListProduct extends Component {
     },
     wrapper: {
       backgroundColor: 'white',
-      margin: 10,
       shadowColor: '#2E272B',
       shadowOffset: { width: 0, height: 3 },
       shadowOpacity: 0.2,

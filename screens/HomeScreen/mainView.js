@@ -136,6 +136,9 @@ export default class MainView extends Component {
     
     return (
       <View style={{ flex: 1 }}>
+        <StatusBar
+          backgroundColor='#183544'
+          />
         <Header Open={this.openTabView.bind(this)} />
         <TabNavigator /*tabBarStyle={{backgroundColor:'#183544'}}*/>
           <TabNavigator.Item

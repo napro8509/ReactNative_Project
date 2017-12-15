@@ -6,7 +6,8 @@ import {
   StyleSheet,
   Image,
   Dimensions,
-  SwipeableListView
+  SwipeableListView,
+  Vibration
 } from 'react-native';
 import getPhoneDetail from '../../WebServices/getPhoneDetail';
 import Swiper from 'react-native-swiper';
@@ -28,6 +29,8 @@ export default class ProductDetail extends Component {
       .then(phoneInformation => {
         this.setState({ phoneDetail: phoneInformation[0] });
         this.setState({ images: this.state.phoneDetail.images });
+        console.log('aaaaaaaaaaaaa');
+        console.log(this.state.images);
       })
   }
   addPhoneToCart(){
@@ -57,30 +60,61 @@ export default class ProductDetail extends Component {
             </TouchableOpacity>
           </View>
           <Swiper style={styles.swiperContainer}>
+          <View style={{flex:1,justifyContent:'center',alignItems:'center',backgroundColor:'#FFF'}}>
             <Image style={styles.swiperImage}
-              source={{ uri: `${url}${this.state.images[0]}` }}
-            >
-            </Image>
+            resizeMode='stretch'
+            source={{uri:`${url}${this.state.images[0]}`}}/>
+            </View>
+            <View style={{flex:1,justifyContent:'center',alignItems:'center',backgroundColor:'white'}}>
             <Image style={styles.swiperImage}
-              source={{ uri: `${url}${this.state.images[1]}` }}
-            >
-            </Image>
-            <Text>
-              Xin chao
-                </Text>
+            resizeMode='stretch'
+            source={{uri:`${url}${this.state.images[1]}`}}/>
+              </View>
+              <View style={{flex:1,justifyContent:'center',alignItems:'center',backgroundColor:'white'}}>
+            <Image style={styles.swiperImage}
+            resizeMode='stretch'
+            source={{uri:`${url}${this.state.images[2]}`}}/>
+              </View>
+              <View style={{flex:1,justifyContent:'center',alignItems:'center',backgroundColor:'white'}}>
+            <Image style={styles.swiperImage}
+            resizeMode='stretch'
+            source={{uri:`${url}${this.state.images[3]}`}}/>
+              </View>
           </Swiper>
           <View style={styles.description}>
-            <View style={styles.descriptionLeft}>
-              <Text>Tên: {this.state.phoneDetail.name} </Text>
-              <Text>Giá: {this.state.phoneDetail.price} </Text>
-              <Text>Màn hình: {this.state.phoneDetail.screen} </Text>
-              <Text>Độ phân giải: {this.state.phoneDetail.solution} </Text>
-              <Text>Camera: {this.state.phoneDetail.camera} </Text>
-              <Text>Ram: {this.state.phoneDetail.ram} </Text>
-              <Text>Rom: {this.state.phoneDetail.rom} </Text>
-            </View>
-            <View style={styles.descriptionRight}>
-            </View>
+              <View style={styles.brownLine}>
+              <Text style={{fontWeight:'bold'}}>Cấu hình {this.state.phoneDetail.name} </Text>
+              </View>
+
+              <View style={styles.whiteLine}>
+              <Text style={{color:'red',flex:1}}>Giá:</Text>
+              <Text style={{color:'red',flex:2}}>{this.state.phoneDetail.price} </Text>
+              </View>
+
+              <View style={styles.brownLine}> 
+              <Text style={{color:'blue',flex:1}}>Màn hình:</Text>
+              <Text style={{color:'blue',flex:2}}>{this.state.phoneDetail.screen} </Text>
+              </View>
+
+              <View style={styles.whiteLine}>
+              <Text style={{flex:1}}>Độ phân giải:</Text>
+              <Text style={{flex:2}}>{this.state.phoneDetail.solution} </Text>
+              </View>
+
+              <View style={styles.brownLine}>
+              <Text style={{flex:1}}>Camera:</Text>
+              <Text style={{flex:2}}>{this.state.phoneDetail.camera} </Text>
+              </View>
+
+              <View style={styles.whiteLine}>
+              <Text style={{ flex: 1 }}>Ram:</Text>
+              <Text  style={{flex:2}}>{this.state.phoneDetail.ram} GB </Text>
+              </View>
+
+              <View style={styles.brownLine}>
+              <Text style={{ flex: 1 }}>Rom:</Text>
+              <Text style={{ flex: 2 }}>{this.state.phoneDetail.rom} GB </Text>
+              </View>
           </View>
         </View>
       </View>
@@ -95,7 +129,6 @@ const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
     backgroundColor: 'white',
-    margin: 10,
     shadowColor: '#2E272B',
     shadowOffset: { width: 0, height: 3 },
     shadowOpacity: 0.2,
@@ -112,12 +145,11 @@ const styles = StyleSheet.create({
   },
   swiperContainer: {
     marginTop: 5,
-    height: height / 3,
-    marginHorizontal: 10
+    marginHorizontal: 0
   },
   swiperImage: {
-    height: height / 3,
-    marginHorizontal: 10
+    flex:1,
+    width:height/2.7
   },
   imageBack: {
     width: 30,
@@ -126,10 +158,20 @@ const styles = StyleSheet.create({
   description: {
     flex: 1,
     backgroundColor: '#FFF',
-    flexDirection: 'row'
   },
-  descriptionLeft: {
-    justifyContent: 'space-between',
-
+  whiteLine:{
+    height:30,
+    paddingLeft:10,
+    justifyContent:'center',
+    flexDirection:'row',
+    alignItems:'center'
+  },
+  brownLine:{
+    backgroundColor:'#DFDFDF',
+    height:30,
+    alignItems:'center',
+    paddingLeft:10,
+    flexDirection:'row',
+    justifyContent:'space-between'
   }
 });

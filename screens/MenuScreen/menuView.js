@@ -8,6 +8,7 @@ import {
   Image
 } from 'react-native';
 import { StackNavigator } from 'react-navigation';
+import { AsyncStorage } from 'react-native';
 
 export default class MenuView extends Component{
   constructor(props){
@@ -61,7 +62,9 @@ export default class MenuView extends Component{
         </View>
       </TouchableOpacity>
       <TouchableOpacity onPress={()=>{
-        this.setState({isLogIn:false})
+        AsyncStorage.removeItem('@token');
+        this.setState({isLogIn:false});
+
       }}>
         <View style={styles.button}>
         <Text style={styles.text}>
