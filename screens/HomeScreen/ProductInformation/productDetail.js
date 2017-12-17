@@ -14,6 +14,10 @@ import Swiper from 'react-native-swiper';
 import global from '../../../Global/global';
 const { height } = Dimensions.get('window');
 const url = 'https://funnyshopjonah.000webhostapp.com/images/product/';
+
+function numberWithSpaces(x) {
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
 export default class ProductDetail extends Component {
   constructor(props) {
     super(props);
@@ -37,8 +41,10 @@ export default class ProductDetail extends Component {
     console.log(this.state.phoneDetail);
     global.addPhoneToCart(this.state.phoneDetail);
   }
+
   render() {
     const { navigation } = this.props;
+    const a=this.state.phoneDetail.price;
     return (
       <View style={styles.container}>
         <View style={styles.wrapper}>
@@ -88,7 +94,7 @@ export default class ProductDetail extends Component {
 
               <View style={styles.whiteLine}>
               <Text style={{color:'red',flex:1}}>Giá:</Text>
-              <Text style={{color:'red',flex:2}}>{this.state.phoneDetail.price} </Text>
+              <Text style={{color:'red',flex:2}}>{numberWithSpaces(`${a}`)} </Text>
               </View>
 
               <View style={styles.brownLine}> 

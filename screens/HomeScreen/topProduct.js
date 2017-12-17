@@ -12,6 +12,9 @@ import {
 const url='';
 const {height,width} = Dimensions.get('window');
 export default class TopProduct extends Component{
+  numberWithSpaces(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
   render() {
     const {goToDetail,topProduct}=this.props;
     return (
@@ -36,7 +39,7 @@ export default class TopProduct extends Component{
                 <View style={{justifyContent:'center',alignItems:'center'}}>
                 <Text style={styles.productName}> {item.name} </Text>
                 <Text style={styles.productOldPrice}> 150$</Text>
-                <Text style={styles.productPrice}> Price : {item.price}$ </Text>
+                <Text style={styles.productPrice}> Price : {this.numberWithSpaces(1000000)}$ </Text>
                 </View>
               </TouchableOpacity>
             </View>
