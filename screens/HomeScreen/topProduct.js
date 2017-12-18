@@ -9,12 +9,12 @@ import {
   FlatList,
 } from 'react-native';
 
-const url='';
+const url='https://funnyshopjonah.000webhostapp.com/images/product/';
 const {height,width} = Dimensions.get('window');
 export default class TopProduct extends Component{
   numberWithSpaces(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-}
+  }
   render() {
     const {goToDetail,topProduct}=this.props;
     return (
@@ -35,11 +35,11 @@ export default class TopProduct extends Component{
               }}>
                 <Image style={styles.image}
                   resizeMode="stretch"
-                  source={{ uri: 'https://cdn.fptshop.com.vn/Uploads/Originals/2017/11/10/636459041871679213_1.jpg' }} />
+                  source={{ uri: `${url}${item.images[0]}` }} />
                 <View style={{justifyContent:'center',alignItems:'center'}}>
                 <Text style={styles.productName}> {item.name} </Text>
-                <Text style={styles.productOldPrice}> 150$</Text>
-                <Text style={styles.productPrice}> Price : {this.numberWithSpaces(1000000)}$ </Text>
+                <Text style={styles.productOldPrice}> {this.numberWithSpaces(`${item.priceless}`)}đ</Text>
+                <Text style={styles.productPrice}> Giá : {this.numberWithSpaces(`${item.price}`)}đ </Text>
                 </View>
               </TouchableOpacity>
             </View>

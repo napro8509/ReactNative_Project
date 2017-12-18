@@ -7,7 +7,8 @@ import {
   Image,
   Dimensions,
   SwipeableListView,
-  Vibration
+  Vibration,
+  ScrollView
 } from 'react-native';
 import getPhoneDetail from '../../WebServices/getPhoneDetail';
 import Swiper from 'react-native-swiper';
@@ -81,12 +82,8 @@ export default class ProductDetail extends Component {
             resizeMode='stretch'
             source={{uri:`${url}${this.state.images[2]}`}}/>
               </View>
-              <View style={{flex:1,justifyContent:'center',alignItems:'center',backgroundColor:'white'}}>
-            <Image style={styles.swiperImage}
-            resizeMode='stretch'
-            source={{uri:`${url}${this.state.images[3]}`}}/>
-              </View>
           </Swiper>
+          <ScrollView>
           <View style={styles.description}>
               <View style={styles.brownLine}>
               <Text style={{fontWeight:'bold'}}>Cấu hình {this.state.phoneDetail.name} </Text>
@@ -94,7 +91,18 @@ export default class ProductDetail extends Component {
 
               <View style={styles.whiteLine}>
               <Text style={{color:'red',flex:1}}>Giá:</Text>
-              <Text style={{color:'red',flex:2}}>{numberWithSpaces(`${a}`)} </Text>
+              <Text style={{color:'red',flex:1}}>{numberWithSpaces(`${a}`)} </Text>
+              <View style={{flex:1,height:20,flexDirection:'row'}}>
+                <View style={{flex:1}}>
+                </View>
+                <View style={{flex:1}}>
+                <View style={{flex:1,backgroundColor:'orange',marginRight:5,justifyContent:'center',alignItems:'center',borderRadius:5}}>
+                <Text style={{color:'#FFF'}}>
+                  -20%
+                  </Text>
+                  </View>
+                </View>
+              </View>
               </View>
 
               <View style={styles.brownLine}> 
@@ -121,7 +129,13 @@ export default class ProductDetail extends Component {
               <Text style={{ flex: 1 }}>Rom:</Text>
               <Text style={{ flex: 2 }}>{this.state.phoneDetail.rom} GB </Text>
               </View>
+
+              <View style={styles.whiteLine}>
+              <Text style={{ flex: 1 }}>Pin:</Text>
+              <Text  style={{flex:2}}>{this.state.phoneDetail.pin} mah </Text>
+              </View>
           </View>
+          </ScrollView>
         </View>
       </View>
     );
