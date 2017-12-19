@@ -19,12 +19,17 @@ const url = 'https://funnyshopjonah.000webhostapp.com/images/product/';
 function numberWithSpaces(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
+function saleCount(a,b){
+  return (a/b);
+}
 export default class ProductDetail extends Component {
   constructor(props) {
     super(props);
     this.state = {
       phoneDetail: {},
-      images: []
+      images: [],
+      price:0,
+      priceless:0
     }
   }
   componentDidMount() {
@@ -34,18 +39,19 @@ export default class ProductDetail extends Component {
       .then(phoneInformation => {
         this.setState({ phoneDetail: phoneInformation[0] });
         this.setState({ images: this.state.phoneDetail.images });
-        console.log('aaaaaaaaaaaaa');
-        console.log(this.state.images);
+        this.setState({price:this.state.price});
+        this.setState({priceless:this.state.priceless});
       })
   }
   addPhoneToCart(){
     console.log(this.state.phoneDetail);
     global.addPhoneToCart(this.state.phoneDetail);
   }
-
+  
   render() {
     const { navigation } = this.props;
-    const a=this.state.phoneDetail.price;
+    const price=this.state.phoneDetail.price;
+    const priceless=this.state.phoneDetail.priceless;
     return (
       <View style={styles.container}>
         <View style={styles.wrapper}>
@@ -66,7 +72,9 @@ export default class ProductDetail extends Component {
               </View>
             </TouchableOpacity>
           </View>
-          <Swiper style={styles.swiperContainer}>
+          <Swiper style={styles.swiperContainer}
+                  showsButtons={true}
+          >
           <View style={{flex:1,justifyContent:'center',alignItems:'center',backgroundColor:'#FFF'}}>
             <Image style={styles.swiperImage}
             resizeMode='stretch'
@@ -90,15 +98,15 @@ export default class ProductDetail extends Component {
               </View>
 
               <View style={styles.whiteLine}>
-              <Text style={{color:'red',flex:1}}>Giá:</Text>
-              <Text style={{color:'red',flex:1}}>{numberWithSpaces(`${a}`)} </Text>
+              <Text style={{color:'red',flex:1,fontWeight:'bold'}}>Giá:</Text>
+              <Text style={{color:'red',flex:1,color:'red'}}>{numberWithSpaces(`${price}`)} </Text>
               <View style={{flex:1,height:20,flexDirection:'row'}}>
                 <View style={{flex:1}}>
                 </View>
                 <View style={{flex:1}}>
                 <View style={{flex:1,backgroundColor:'orange',marginRight:5,justifyContent:'center',alignItems:'center',borderRadius:5}}>
                 <Text style={{color:'#FFF'}}>
-                  -20%
+                  -{Math.round(100-saleCount(price,priceless)*100)}%
                   </Text>
                   </View>
                 </View>
@@ -106,33 +114,43 @@ export default class ProductDetail extends Component {
               </View>
 
               <View style={styles.brownLine}> 
-              <Text style={{color:'blue',flex:1}}>Màn hình:</Text>
-              <Text style={{color:'blue',flex:2}}>{this.state.phoneDetail.screen} </Text>
+              <Text style={{color:'blue',flex:1,fontWeight:'bold'}}>Màn hình:</Text>
+              <Text style={{color:'blue',flex:2,color:'black'}}>{this.state.phoneDetail.screen} </Text>
               </View>
 
               <View style={styles.whiteLine}>
-              <Text style={{flex:1}}>Độ phân giải:</Text>
-              <Text style={{flex:2}}>{this.state.phoneDetail.solution} </Text>
+              <Text style={{flex:1,fontWeight:'bold'}}>Độ phân giải:</Text>
+              <Text style={{flex:2,color:'black'}}>{this.state.phoneDetail.solution} </Text>
               </View>
 
               <View style={styles.brownLine}>
-              <Text style={{flex:1}}>Camera:</Text>
-              <Text style={{flex:2}}>{this.state.phoneDetail.camera} </Text>
+              <Text style={{flex:1,fontWeight:'bold'}}>Camera:</Text>
+              <Text style={{flex:2,color:'black'}}>{this.state.phoneDetail.camera} </Text>
               </View>
 
               <View style={styles.whiteLine}>
-              <Text style={{ flex: 1 }}>Ram:</Text>
-              <Text  style={{flex:2}}>{this.state.phoneDetail.ram} GB </Text>
+              <Text style={{ flex: 1 ,fontWeight:'bold'}}>Ram:</Text>
+              <Text  style={{flex:2,color:'black'}}>{this.state.phoneDetail.ram} GB </Text>
               </View>
 
               <View style={styles.brownLine}>
-              <Text style={{ flex: 1 }}>Rom:</Text>
-              <Text style={{ flex: 2 }}>{this.state.phoneDetail.rom} GB </Text>
+              <Text style={{ flex: 1,fontWeight:'bold' }}>Rom:</Text>
+              <Text style={{ flex: 2,color:'black' }}>{this.state.phoneDetail.rom} GB </Text>
               </View>
 
               <View style={styles.whiteLine}>
-              <Text style={{ flex: 1 }}>Pin:</Text>
-              <Text  style={{flex:2}}>{this.state.phoneDetail.pin} mah </Text>
+              <Text style={{ flex: 1 ,fontWeight:'bold'}}>Pin:</Text>
+              <Text  style={{flex:2,color:'black'}}>{this.state.phoneDetail.pin} mah </Text>
+              </View>
+              
+              <View style={styles.brownLine}>
+              <Text style={{ flex: 1,fontWeight:'bold' }}>Hệ Điều Hành:</Text>
+              <Text style={{ flex: 2,color:'black' }}>{this.state.phoneDetail.os}  </Text>
+              </View>
+
+              <View >
+              <Text style={{paddingLeft:7,paddingTop:5,paddingRight:10,fontWeight:'bold' }}> Mô Tả Chi Tiết</Text>
+              <Text style={{paddingLeft:10,paddingTop:5,paddingRight:10,color:'black'}}>{this.state.phoneDetail.description}</Text>
               </View>
           </View>
           </ScrollView>

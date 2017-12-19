@@ -6,12 +6,15 @@ import {
 } from 'react-native';
 import global from '../../../Global/global';
 
-
+const url = 'https://funnyshopjonah.000webhostapp.com/images/product/';
+function numberWithSpaces(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
 export default class Search extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            listProduct: []
+            listProduct: [],
         };
         global.SearchArray = this.setSearchArray.bind(this);
     }
@@ -33,10 +36,10 @@ export default class Search extends Component {
                     data={this.state.listProduct}
                     renderItem={({ item }) =>
                         <View style={product}>
-                            <Image style={productImage} source={{ uri: 'https://i5.walmartimages.com/asr/20caa881-9f84-478b-8259-b9c3448e1007_1.f85576fe20ee4efe41421c04faaa310f.jpeg?odnHeight=450&odnWidth=450&odnBg=FFFFFF' }} />
+                            <Image style={productImage} source={{ uri: `${url}${item.images[0]}` }} />
                             <View style={mainRight}>
-                                <Text style={txtName}>Name: {item.name}</Text>
-                                <Text style={txtPrice}>Price: {item.price}$</Text>
+                                <Text style={txtName}>{item.name}</Text>
+                                <Text style={txtPrice}>Giá: {numberWithSpaces(item.price)} đ</Text>
                                 <Text style={txtMaterial}>Material </Text>
                                 <View style={{ flexDirection: 'row' }} >
                                     <Text style={txtColor}>Color </Text>

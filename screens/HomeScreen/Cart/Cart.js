@@ -8,6 +8,11 @@ import {
 import global from '../../../Global/global';
 import getToken from '../../../Api/getToken';
 import sendOrder from '../../../Api/sendOrder';
+
+function numberWithSpaces(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
+const url='https://funnyshopjonah.000webhostapp.com/images/product/';
 class CartView extends Component {
     async onSendOrder(){
             const token=await getToken();
@@ -48,7 +53,7 @@ class CartView extends Component {
                 data={cartArray}
                 renderItem={({item})=>
                 <View style={productStyle}>
-                <Image source={{ uri: 'https://funnyshopjonah.000webhostapp.com/images/product/54.jpg' }} style={productImage} />
+                <Image source={{ uri: `${url}${item.phone.images[0]}` }} style={productImage} />
                 <View style={mainRight}>
                     <View style={{ justifyContent: 'space-between', flexDirection: 'row' }}>
                         <Text style={txtName}>{item.phone.name}</Text>
@@ -59,7 +64,7 @@ class CartView extends Component {
                         </TouchableOpacity>
                     </View>
                     <View>
-                        <Text style={txtPrice}>{item.phone.price}$</Text>
+                        <Text style={txtPrice}>{numberWithSpaces(item.phone.price)}$</Text>
                     </View>
                     <View style={productController}>
                         <View style={numberOfProduct}>
@@ -90,7 +95,7 @@ class CartView extends Component {
                 <TouchableOpacity onPress={this.onSendOrder.bind(this)}>
                     <View style={styles.total}>
                         <Text style={styles.totalValue}>
-                            CHECK OUT {tien}$ NOW
+                            CHECK OUT {numberWithSpaces(tien)} đ NOW
                             </Text>
                     </View>
                 </TouchableOpacity>

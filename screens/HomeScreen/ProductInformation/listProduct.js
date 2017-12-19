@@ -27,8 +27,6 @@ export default class ListProduct extends Component {
     getListPhone(params.id, this.state.page)
       .then(arrPhone => {
         this.setState({ source: arrPhone, nameType: arrPhone[0].nameType });
-        console.log(arrPhone);
-        console.log(arrPhone[0].nameType);
       });
   }
   onRefresh = () => {

@@ -25,12 +25,11 @@ export default class HomeScreen extends Component {
     .then(response =>response.json())
     .then(responseJson=>{
       this.setState({topProduct:responseJson.product});
-      console.log(this.state.topProduct);
     })
   }
   render() {
     const { navigation } = this.props;
-    const {screenProps}= this.props;
+
     return (
       <ScrollView>
         <View style={{ flex: 1, backgroundColor: '#FFF' }}>
@@ -43,7 +42,6 @@ export default class HomeScreen extends Component {
             topProduct={this.state.topProduct}
           />
           <Category goToList={(idList) => { navigation.navigate('ListProduct', { id: idList }); }}
-            screenProps={screenProps}
           />
         </View>
       </ScrollView>

@@ -156,8 +156,7 @@ export default class MainView extends Component {
               resizeMode="stretch"
             />}
             onPress={() => this.setState({ selectedTab: 'home' })}>
-            {<ListScreen screenProps={this.state.type}
-            />}
+            {<ListScreen />}
           </TabNavigator.Item>
           <TabNavigator.Item
             selected={this.state.selectedTab === 'profile'}
