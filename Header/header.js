@@ -6,9 +6,10 @@ import {
   Dimensions,
   Image,
   StyleSheet,
-  TextInput
+  TextInput,
 } from 'react-native';
 import global from '../Global/global';
+import { Icon } from 'react-native-vector-icons';
 const {height} = Dimensions.get('window');
 export default class Header extends Component{
   constructor(props){
@@ -44,7 +45,8 @@ export default class Header extends Component{
           />
           </TouchableOpacity>
       </View>
-      <View style={{flex:1,height:height/25}}>
+      <View style={{flex:1,height:height/25,flexDirection:'row',justifyContent:'center',alignItems:'center'}}>
+        
         <TextInput style={styles.title}
                     underlineColorAndroid='transparent'
                     placeholder='Searching for something?'
@@ -54,6 +56,7 @@ export default class Header extends Component{
                     onEndEditing={this.goToSearch.bind(this)}
         >
         </TextInput>
+        
       </View>
       </View>
     );
@@ -76,6 +79,7 @@ const styles=StyleSheet.create({
     marginRight:5
   },
   title:{
+    flex:1,
     backgroundColor:'white',
     marginLeft:5,
     marginRight:5,
@@ -84,6 +88,9 @@ const styles=StyleSheet.create({
     paddingVertical:0,
     borderRadius:10,
     paddingLeft:10
+  },
+  searchIcon:{
+    padding:10
   }
   }
 )

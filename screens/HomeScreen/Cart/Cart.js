@@ -162,7 +162,7 @@ const styles = StyleSheet.create({
     },
     txtName: {
         paddingLeft: 20,
-        color: '#A7A7A7',
+        color: 'orange',
         fontSize: 20,
         fontWeight: '400',
         fontFamily: 'Avenir'

@@ -144,8 +144,8 @@ export default class MainView extends Component {
           <TabNavigator.Item
             selected={this.state.selectedTab === 'home'}
             title="Home"
-            titleStyle={{ color: 'black' }}
-            selectedTitleStyle={{ color: 'green' }}
+            titleStyle={{ color: 'grey' }}
+            selectedTitleStyle={{ color: 'orange' }}
             renderIcon={() =>
               <Image style={{ width: 20, height: 20 }}
                 source={require('../../images/home.png')}
@@ -161,7 +161,8 @@ export default class MainView extends Component {
           <TabNavigator.Item
             selected={this.state.selectedTab === 'profile'}
             title="Profile"
-            titleStyle={{ color: 'black' }}
+            titleStyle={{ color: 'grey' }}
+            selectedTitleStyle={{ color: 'orange' }}
             renderIcon={() =>
               <Image style={{ width: 20, height: 20 }}
                 source={require('../../images/profile.png')}
@@ -177,7 +178,8 @@ export default class MainView extends Component {
           <TabNavigator.Item
             selected={this.state.selectedTab === 'cart'}
             title="Cart"
-            titleStyle={{ color: 'black' }}
+            titleStyle={{ color: 'grey' }}
+            selectedTitleStyle={{ color: 'orange' }}
             renderIcon={() =>
               <Image style={{ width: 20, height: 20 }}
                 source={require('../../images/cart.png')}
@@ -194,7 +196,8 @@ export default class MainView extends Component {
           <TabNavigator.Item
             selected={this.state.selectedTab === 'search'}
             title="Search"
-            titleStyle={{ color: 'black' }}
+            titleStyle={{ color: 'grey' }}
+            selectedTitleStyle={{ color: 'orange' }}
             renderIcon={() =>
               <Image style={{ width: 20, height: 20 }}
                 source={require('../../images/search.png')}

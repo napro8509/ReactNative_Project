@@ -125,8 +125,8 @@ export default class ProductDetail extends Component {
         </View>
 
         <View style={styles.brownLine}>
-          <Text style={{ flex: 1, fontWeight: 'bold' }}>Hệ Điều Hành:</Text>
-          <Text style={{ flex: 2, color: 'black' }}>{this.state.phoneDetail.os}  </Text>
+          <Text style={{ flex: 1, fontWeight: 'bold' }}>Vi xử lí:</Text>
+          <Text style={{ flex: 2, color: 'black' }}>{this.state.phoneDetail.chip}  </Text>
         </View>
 
         <View >
@@ -200,8 +200,10 @@ const styles = StyleSheet.create({
     borderBottomColor: 'orange',
     marginHorizontal: 10
   },
+  headerTitle:{
+    color:'orange'
+  },
   swiperContainer: {
-    marginTop: 5,
     marginHorizontal: 0
   },
   swiperImage: {
