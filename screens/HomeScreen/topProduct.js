@@ -53,7 +53,7 @@ export default class TopProduct extends Component{
 
 const styles =StyleSheet.create({
   container:{
-    backgroundColor:'#FFF',
+    backgroundColor:'transparent',
     margin:10,
     shadowColor:'#2E272B',
     shadowOffset:{width:0,height:3},
@@ -63,13 +63,13 @@ const styles =StyleSheet.create({
     paddingTop:10,
   },
   titleContainer:{
-    backgroundColor:'white',
+    backgroundColor:'transparent',
     height:15,
     justifyContent:'center',
     paddingLeft:10,
   },
   title:{
-    color:'black',
+    color:'white',
     fontSize:15,
     fontFamily:'Avenir',
     marginLeft:3
@@ -77,6 +77,7 @@ const styles =StyleSheet.create({
   image:{
     height:(width-70)/2,
     width:(width-70)/2,
+    borderRadius:10
   },
   body:{
     marginTop:3,

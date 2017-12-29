@@ -3,7 +3,8 @@ import {
   View,
   Text,
   TouchableOpacity,
-  ScrollView
+  ScrollView,
+  Image
 } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import SaleCollection from './saleCollection.js';
@@ -32,8 +33,25 @@ export default class HomeScreen extends Component {
 
     return (
       <ScrollView>
+        
         <View style={{ flex: 1, backgroundColor: '#FFF' }}>
-
+        <View
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+          }}
+        >
+          <Image
+            style={{
+              flex: 1,
+            }}
+            resizeMode='cover'
+            source={{ uri: 'http://theiphonewalls.com/wp-content/uploads/2013/09/iOS-7-Glow.png' }}
+          />
+        </View>
             <SaleCollection goToList={()=>{navigation.navigate('ListProduct',{id:'COLLECTION'})}}/>
           <TouchableOpacity>
             <GiftVoucher />

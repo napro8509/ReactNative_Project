@@ -140,12 +140,12 @@ export default class MainView extends Component {
           backgroundColor='#183544'
           />
         <Header Open={this.openTabView.bind(this)} />
-        <TabNavigator /*tabBarStyle={{backgroundColor:'#183544'}}*/>
+        <TabNavigator tabBarStyle={{backgroundColor:'#183544'}}>
           <TabNavigator.Item
             selected={this.state.selectedTab === 'home'}
             title="Home"
             titleStyle={{ color: 'grey' }}
-            selectedTitleStyle={{ color: 'orange' }}
+            selectedTitleStyle={{ color: 'white' }}
             renderIcon={() =>
               <Image style={{ width: 20, height: 20 }}
                 source={require('../../images/home.png')}
@@ -162,7 +162,7 @@ export default class MainView extends Component {
             selected={this.state.selectedTab === 'profile'}
             title="Profile"
             titleStyle={{ color: 'grey' }}
-            selectedTitleStyle={{ color: 'orange' }}
+            selectedTitleStyle={{ color: 'white' }}
             renderIcon={() =>
               <Image style={{ width: 20, height: 20 }}
                 source={require('../../images/profile.png')}
@@ -179,7 +179,7 @@ export default class MainView extends Component {
             selected={this.state.selectedTab === 'cart'}
             title="Cart"
             titleStyle={{ color: 'grey' }}
-            selectedTitleStyle={{ color: 'orange' }}
+            selectedTitleStyle={{ color: 'white' }}
             renderIcon={() =>
               <Image style={{ width: 20, height: 20 }}
                 source={require('../../images/cart.png')}
@@ -197,7 +197,7 @@ export default class MainView extends Component {
             selected={this.state.selectedTab === 'search'}
             title="Search"
             titleStyle={{ color: 'grey' }}
-            selectedTitleStyle={{ color: 'orange' }}
+            selectedTitleStyle={{ color: 'white' }}
             renderIcon={() =>
               <Image style={{ width: 20, height: 20 }}
                 source={require('../../images/search.png')}

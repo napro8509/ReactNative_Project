@@ -10,8 +10,8 @@ import {
 import Swiper from 'react-native-swiper';
 
 const { height } = Dimensions.get('window');
-const imageHeight = height * 0.37 * 5 / 6;
-const imageWidth = imageHeight * 1.84;
+const imageHeight = height * 0.45 * 5 / 6;
+const imageWidth = imageHeight * 1.55;
 
 const url = 'https://funnyshopjonah.000webhostapp.com/images/type/';
 export default class Category extends Component {
@@ -42,19 +42,42 @@ export default class Category extends Component {
           {
             this.state.array.map((data, i) => {
               return (
-                <View key={data.id}
-                  style={{ flex: 1 }}
-                >
-                  <TouchableOpacity onPress={() => {
+                <TouchableOpacity key={data.id}
+                  style={{ flex: 1}}
+                  onPress={() => {
                     const { goToList } = this.props;
                     goToList(data.id);
-                  }}>
-                    <Text>{data.name}</Text>
+                  }}
+                >
+                <View style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+          }}>
+                  
+                  <View>
                     <Image source={{ uri: `${url}${data.image}` }}
-                      style={{ width: imageWidth, height: imageHeight }}
+                      style={{ width: imageWidth, height: imageHeight,borderRadius:10 }}
+                      resizeMode='stretch'
                     />
-                  </TouchableOpacity>
-                </View>
+                    </View>
+                  </View>
+                  <View style={{flex: 1, backgroundColor: 'transparent',justifyContent: 'flex-end',alignContent:'flex-end'}}
+        >
+          <Text
+            style={{
+              textAlign:'right',
+              fontSize: 30,
+              color:'#FFF',
+              fontStyle:'italic'
+            }}
+          >
+           {data.name}
+          </Text>
+        </View>
+                </TouchableOpacity>
 
               )
             })
@@ -73,8 +96,9 @@ export default class Category extends Component {
 }
 const styles = StyleSheet.create({
   collecions: {
-    backgroundColor: '#FFF',
-    height: height * 0.38,
+    backgroundColor: 'transparent',
+    height: height * 0.37,
+    borderRadius:10,
     margin: 10,
     shadowColor: '#2E272B',
     shadowOffset: { width: 0, height: 3 },

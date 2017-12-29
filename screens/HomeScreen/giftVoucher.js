@@ -14,11 +14,11 @@ export default class GitfVoucher extends Component{
   render() {
     return (
       <View style={styles.collecions}>
-        <View style={{flex:5,justifyContent:'center',alignItems:'center'}}>
+        <View style={{flex:5,justifyContent:'center',alignItems:'center',backgroundColor:'transparent'}}>
           <Image
-            source={{uri:'http://en.data.coolicool.com/topic/blackview/banner.jpg'}}
-            resizeMode="stretch"
-            style={{height:imageHeight,width:imageWidth}}
+            source={{uri:'https://znews-photo-td.zadn.vn/w1024/Uploaded/ynssi/2017_10_06/pixel2xl_iphonex_note1.jpg'}}
+            resizeMode="cover"
+            style={{height:imageHeight,width:imageWidth,    borderRadius:10}}
           />
         </View>
       </View>
@@ -27,14 +27,14 @@ export default class GitfVoucher extends Component{
 }
 const styles= StyleSheet.create({
   collecions:{
-    backgroundColor:'#FFF',
+    borderRadius:10,
+    backgroundColor:'transparent',
     height:imageHeight,
     margin:10,
     shadowColor:'#2E272B',
     shadowOffset:{width:0,height:3},
     shadowOpacity:0.2,
     elevation:3,
-    borderRadius:5
   },
   text:{
     fontSize:15,
