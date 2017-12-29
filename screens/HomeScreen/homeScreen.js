@@ -15,47 +15,45 @@ export default class HomeScreen extends Component {
   /*static navigationOptions={
     title:'Home Screen'
   };*/
-  constructor(props){
+  constructor(props) {
     super(props);
-    this.state={
-      topProduct:[],
+    this.state = {
+      topProduct: [],
     }
   }
-  componentDidMount(){
+  componentDidMount() {
     fetch("https://funnyshopjonah.000webhostapp.com")
-    .then(response =>response.json())
-    .then(responseJson=>{
-      this.setState({topProduct:responseJson.product});
-    })
+      .then(response => response.json())
+      .then(responseJson => {
+        this.setState({ topProduct: responseJson.product });
+      })
   }
   render() {
     const { navigation } = this.props;
 
     return (
       <ScrollView>
-        
+
         <View style={{ flex: 1, backgroundColor: '#FFF' }}>
-        <View
-          style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            width: '100%',
-            height: '100%',
-          }}
-        >
-          <Image
+          <View
             style={{
-              flex: 1,
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              width: '100%',
+              height: '100%',
             }}
-            resizeMode='cover'
-            source={{ uri: 'http://theiphonewalls.com/wp-content/uploads/2013/09/iOS-7-Glow.png' }}
-          />
-        </View>
-            <SaleCollection goToList={()=>{navigation.navigate('ListProduct',{id:'COLLECTION'})}}/>
-          <TouchableOpacity>
-            <GiftVoucher />
-          </TouchableOpacity>
+          >
+            <Image
+              style={{
+                flex: 1,
+              }}
+              resizeMode='cover'
+              source={{ uri: 'http://theiphonewalls.com/wp-content/uploads/2013/09/iOS-7-Glow.png' }}
+            />
+          </View>
+          <SaleCollection goToList={() => { navigation.navigate('ListProduct', { id: 'COLLECTION', title: 'COLLECTION' }) }} />
+          <GiftVoucher goToList={() => { navigation.navigate('ListProduct', { id: 'FLAGSHIP', title: 'FLAGSHIP 2017' }) }} />
           <TopProduct goToDetail={(idPhone) => { navigation.navigate('ProductDetail', { id: idPhone }); }}
             topProduct={this.state.topProduct}
           />

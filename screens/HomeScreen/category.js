@@ -11,7 +11,7 @@ import Swiper from 'react-native-swiper';
 
 const { height } = Dimensions.get('window');
 const imageHeight = height * 0.45 * 5 / 6;
-const imageWidth = imageHeight * 1.55;
+const imageWidth = imageHeight * 1.45;
 
 const url = 'https://funnyshopjonah.000webhostapp.com/images/type/';
 export default class Category extends Component {

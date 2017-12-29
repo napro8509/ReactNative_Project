@@ -25,7 +25,7 @@ export default class ListProduct extends Component {
       nameType: 'COLLECTION',
       refreshing: false,
       page: 1,
-      new:1
+      new: 1
     }
   }
 
@@ -33,8 +33,11 @@ export default class ListProduct extends Component {
     const { params } = this.props.navigation.state;
     getListPhone(params.id, this.state.page)
       .then(arrPhone => {
-        console.log(arrPhone);
         this.setState({ source: arrPhone, nameType: arrPhone[0].nameType });
+        if (arrPhone[0].nameType == undefined) {
+          this.setState({ nameType: params.title });
+        } else
+          this.setState({ nameType: arrPhone[0].nameType });
       });
   }
   onRefresh = () => {
@@ -65,6 +68,23 @@ export default class ListProduct extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.wrapper}>
+        <View
+            style={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              width: '100%',
+              height: '100%',
+            }}
+          >
+            <Image
+              style={{
+                flex: 1,
+              }}
+              resizeMode='cover'
+              source={{ uri: 'http://theiphonewalls.com/wp-content/uploads/2013/09/iOS-7-Glow.png' }}
+            />
+          </View>
           <View style={styles.header}>
             <TouchableOpacity onPress={() => navigation.goBack()}>
               <Image style={styles.imageBack}
@@ -78,7 +98,7 @@ export default class ListProduct extends Component {
           <FlatList
             data={this.state.source}
             renderItem={({ item }) =>
-   
+
               <TouchableOpacity onPress={() => {
                 navigation.navigate('ProductDetail', { id: item.id });
               }}>
@@ -106,16 +126,16 @@ export default class ListProduct extends Component {
                         />
                       </View>
                       <View style={{ alignItems: 'flex-end' }}>
-                        <View style={{ flexDirection: 'row'}}>
-                         {item.saling?onSale:null}
-                          {item.newPhone?newPhone:null}
+                        <View style={{ flexDirection: 'row' }}>
+                          {item.saling ? onSale : null}
+                          {item.newPhone ? newPhone : null}
                         </View>
-                        
+
                         <Image source={require('../../../images/freeShip.jpg')}
-                               resizeMode='stretch'
-                              style={{height:40,width:180}}
+                          resizeMode='stretch'
+                          style={{ height: 40, width: 180 }}
                         />
-                        
+
                       </View>
                     </View>
                   </View>
@@ -142,8 +162,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFF',
   },
   wrapper: {
-    flex:1,
-    backgroundColor: '#DFDFDF',
+    flex: 1,
+    backgroundColor: '#FFF',
     shadowColor: '#2E272B',
     shadowOffset: { width: 0, height: 3 },
     shadowOpacity: 0.2,
@@ -169,9 +189,9 @@ const styles = StyleSheet.create({
     height: 30
   },
   itemContainer: {
-    backgroundColor: 'white',
+    backgroundColor: '#FFF',
     height: 150,
-
+    borderRadius:10,
     marginHorizontal: 10,
     flexDirection: 'row',
     marginVertical: 5,

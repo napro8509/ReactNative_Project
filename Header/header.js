@@ -29,7 +29,25 @@ export default class Header extends Component{
   render(){
     return(
       <View style={styles.container}>
+      <View
+            style={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              width: '100%',
+              height: '100%',
+            }}
+          >
+            <Image
+              style={{
+                flex: 1,
+              }}
+              resizeMode='cover'
+              source={{ uri: 'http://theiphonewalls.com/wp-content/uploads/2013/09/iOS-7-Glow.png' }}
+            />
+          </View>
       <View style={{flex:1,flexDirection:'row',justifyContent:'space-between',alignItems:'center',marginTop:3}}>
+      
         <TouchableOpacity onPress={this.openDrawer.bind(this)}>
           <Image style={styles.image}
              source={require('../images/menu.png')}
@@ -46,7 +64,6 @@ export default class Header extends Component{
           </TouchableOpacity>
       </View>
       <View style={{flex:1,height:height/25,flexDirection:'row',justifyContent:'center',alignItems:'center'}}>
-        
         <TextInput style={styles.title}
                     underlineColorAndroid='transparent'
                     placeholder='Searching for something?'
@@ -56,7 +73,6 @@ export default class Header extends Component{
                     onEndEditing={this.goToSearch.bind(this)}
         >
         </TextInput>
-        
       </View>
       </View>
     );
