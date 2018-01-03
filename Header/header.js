@@ -24,6 +24,7 @@ export default class Header extends Component{
   }
   goToSearch(){
     console.log('Go to search');
+    if(this.state.key!='')
     global.openSearch(this.state.key);
   }
   render(){

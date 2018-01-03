@@ -20,7 +20,7 @@ export default class GitfVoucher extends Component{
     return (
       <TouchableOpacity onPress={this.goToListPhone.bind(this)}>
       <View style={styles.collecions}>
-        <View style={{flex:5,justifyContent:'center',alignItems:'center',backgroundColor:'transparent'}}>
+        <View style={{flex:5,justifyContent:'center',alignItems:'center',backgroundColor:'transparent',borderRadius:10}}>
           <Image
             source={{uri:'https://znews-photo-td.zadn.vn/w1024/Uploaded/ynssi/2017_10_06/pixel2xl_iphonex_note1.jpg'}}
             resizeMode="cover"

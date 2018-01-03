@@ -41,7 +41,10 @@ export default class DetailScreen extends Component {
             justifyContent: 'center',
           }}
         >
-        <View style={{flex:1}}>
+        <View style={{flex:1,justifyContent:'center',alignItems:'center',marginHorizontal:10,backgroundColor:'white'}}>
+        <Image  style={{width:width,height:width*2/3,flex:1}} 
+        resizeMode='stretch'
+        source={require('../../images/map.png')}/>
         </View>
           <View style={styles.infoContainer}>
             <View style={styles.rowInfoContainer}>

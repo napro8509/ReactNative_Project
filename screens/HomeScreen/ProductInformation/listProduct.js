@@ -118,7 +118,7 @@ export default class ListProduct extends Component {
                         <Rating
                           type="star"
                           fractions={1}
-                          startingValue={3.6}
+                          startingValue={item.rating}
                           readonly
                           imageSize={20}
                           onFinishRating={this.ratingCompleted}

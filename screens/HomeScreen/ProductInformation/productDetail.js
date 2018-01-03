@@ -8,7 +8,7 @@ import {
   Dimensions,
   SwipeableListView,
   Vibration,
-  ScrollView
+  ScrollView,
 } from 'react-native';
 import getPhoneDetail from '../../WebServices/getPhoneDetail';
 import Swiper from 'react-native-swiper';
@@ -73,6 +73,7 @@ export default class ProductDetail extends Component {
       </View>
     </Swiper>);
     const scrollView = (
+      
       <View style={styles.description}>
         <View style={styles.brownLine}>
           <Text style={{ fontWeight: 'bold' }}>Cấu hình {this.state.phoneDetail.name} </Text>
@@ -164,7 +165,6 @@ export default class ProductDetail extends Component {
         </View> 
     }
       >
-        {swiper}
         {scrollView}
       </SwipeHiddenHeader>
         </View>

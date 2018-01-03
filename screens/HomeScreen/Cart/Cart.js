@@ -3,7 +3,8 @@ import React, { Component } from 'react';
 import {
     View, Text, TouchableOpacity,
     Dimensions, StyleSheet, Image, FlatList,
-    ScrollView
+    ScrollView,
+    Alert
 } from 'react-native';
 import global from '../../../Global/global';
 import getToken from '../../../Api/getToken';
@@ -14,15 +15,44 @@ function numberWithSpaces(x) {
   }
 const url='https://funnyshopjonah.000webhostapp.com/images/product/';
 class CartView extends Component {
-    async onSendOrder(){
-            const token=await getToken();
-            const arrayDetail=this.props.screenProps.map(e=>({
-                id:e.phone.id,
-                quantity:e.quantity
+    async onSendOrder() {
+        console.log(global.checkLogin);
+        if (this.props.screenProps.length < 1) {
+            Alert.alert(
+                'Notification',
+                'No product in Your Cart!',
+                [
+                    { text: 'OK' },
+                ],
+                { cancelable: false }
+            )
+        }
+        else if (global.checkLogin == true) {
+            const token = await getToken();
+            const arrayDetail = this.props.screenProps.map(e => ({
+                id: e.phone.id,
+                quantity: e.quantity
             }));
-            console.log(token)
-            const kq= await sendOrder(token,arrayDetail);
-            console.log(kq);
+            const kq = await sendOrder(token, arrayDetail);
+            Alert.alert(
+                'Notification',
+                'Send Oder Successfully! Please Check in Oder History',
+                [
+                    { text: 'OK' },
+                ],
+                { cancelable: false }
+            )
+        }
+        else {
+            Alert.alert(
+                'Notification',
+                'Please sign in to order!',
+                [
+                    { text: 'OK' },
+                ],
+                { cancelable: false }
+            )
+        }
     }
 
     incrQuantity(id){

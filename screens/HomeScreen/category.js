@@ -43,42 +43,41 @@ export default class Category extends Component {
             this.state.array.map((data, i) => {
               return (
                 <TouchableOpacity key={data.id}
-                  style={{ flex: 1}}
+                  style={{ flex: 1 }}
                   onPress={() => {
                     const { goToList } = this.props;
                     goToList(data.id);
                   }}
                 >
-                <View style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            width: '100%',
-            height: '100%',
-          }}>
-                  
-                  <View>
-                    <Image source={{ uri: `${url}${data.image}` }}
-                      style={{ width: imageWidth, height: imageHeight,borderRadius:10 }}
-                      resizeMode='stretch'
-                    />
+                  <View style={{
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    width: '100%',
+                    height: '100%',
+                  }}>
+
+                    <View>
+                      <Image source={{ uri: `${url}${data.image}` }}
+                        style={{ width: imageWidth, height: imageHeight, borderRadius: 10 }}
+                        resizeMode='stretch'
+                      />
                     </View>
                   </View>
-                  <View style={{flex: 1, backgroundColor: 'transparent',justifyContent: 'flex-end',alignContent:'flex-end'}}
-        >
-          <Text
-            style={{
-              textAlign:'right',
-              fontSize: 30,
-              color:'#FFF',
-              fontStyle:'italic'
-            }}
-          >
-           {data.name}
-          </Text>
-        </View>
+                  <View style={{ flex: 1, backgroundColor: 'transparent', justifyContent: 'flex-end', alignContent: 'flex-end' }}
+                  >
+                    <Text
+                      style={{
+                        textAlign: 'right',
+                        fontSize: 30,
+                        color: '#FFF',
+                        fontStyle: 'italic'
+                      }}
+                    >
+                      {data.name}
+                    </Text>
+                  </View>
                 </TouchableOpacity>
-
               )
             })
           }
@@ -98,7 +97,7 @@ const styles = StyleSheet.create({
   collecions: {
     backgroundColor: 'transparent',
     height: height * 0.37,
-    borderRadius:10,
+    borderRadius: 10,
     margin: 10,
     shadowColor: '#2E272B',
     shadowOffset: { width: 0, height: 3 },
@@ -109,7 +108,7 @@ const styles = StyleSheet.create({
     fontSize: 15,
     color: '#183544',
     margin: 5,
-    fontFamily:'Avenir'
+    fontFamily: 'Avenir'
   },
 
 })

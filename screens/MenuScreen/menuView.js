@@ -18,9 +18,11 @@ export default class MenuView extends Component{
       user:{}
     };
     global.onLogIn=this.onLogIn.bind(this);
+    global.checkLogin=this.state.isLogIn;
   };
   onLogIn(user){
     this.setState({isLogIn:true,user})
+    global.checkLogin=this.state.isLogIn;
   }
   openOder(){
     global.goToOrder();

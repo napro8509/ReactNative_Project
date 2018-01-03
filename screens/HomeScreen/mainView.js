@@ -159,23 +159,6 @@ export default class MainView extends Component {
             {<ListScreen />}
           </TabNavigator.Item>
           <TabNavigator.Item
-            selected={this.state.selectedTab === 'profile'}
-            title="Profile"
-            titleStyle={{ color: 'grey' }}
-            selectedTitleStyle={{ color: 'white' }}
-            renderIcon={() =>
-              <Image style={{ width: 20, height: 20 }}
-                source={require('../../images/profile.png')}
-                resizeMode="stretch" />
-            }
-            renderSelectedIcon={() => <Image style={{ width: 20, height: 20 }}
-              source={require('../../images/profile_red.png')}
-              resizeMode="stretch"
-            />}
-            onPress={() => this.setState({ selectedTab: 'profile' })}>
-            {<DetailScreen />}
-          </TabNavigator.Item>
-          <TabNavigator.Item
             selected={this.state.selectedTab === 'cart'}
             title="Cart"
             titleStyle={{ color: 'grey' }}
@@ -209,6 +192,23 @@ export default class MainView extends Component {
             />}
             onPress={() => this.setState({ selectedTab: 'search' })}>
             {<SearchNavigator />}
+          </TabNavigator.Item>
+          <TabNavigator.Item
+            selected={this.state.selectedTab === 'profile'}
+            title="Contact"
+            titleStyle={{ color: 'grey' }}
+            selectedTitleStyle={{ color: 'white' }}
+            renderIcon={() =>
+              <Image style={{ width: 20, height: 20 }}
+                source={require('../../images/profile.png')}
+                resizeMode="stretch" />
+            }
+            renderSelectedIcon={() => <Image style={{ width: 20, height: 20 }}
+              source={require('../../images/profile_red.png')}
+              resizeMode="stretch"
+            />}
+            onPress={() => this.setState({ selectedTab: 'profile' })}>
+            {<DetailScreen />}
           </TabNavigator.Item>
         </TabNavigator>
       </View>

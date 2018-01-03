@@ -6,5 +6,6 @@ module.export={
     onLogIn:null,
     openSearch:null,
     SearchArray:null,
-    goToOrder:null
+    goToOrder:null,
+    checkLogin:null
 };
